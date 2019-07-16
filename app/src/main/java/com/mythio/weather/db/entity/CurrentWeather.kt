@@ -3,82 +3,84 @@ package com.mythio.weather.db.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
-import com.mythio.weather.CURRENT_WEATHER_ID
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "current_weather")
 data class CurrentWeather(
 
-    @SerializedName("last_updated_epoch")
+    @Json(name = "last_updated_epoch")
     val lastUpdatedEpoch: Int,
 
-    @SerializedName("last_updated")
+    @Json(name = "last_updated")
     val lastUpdated: String,
 
-    @SerializedName("temp_c")
+    @Json(name = "temp_c")
     val tempC: Float,
 
-    @SerializedName("temp_f")
+    @Json(name = "temp_f")
     val tempF: Float,
 
-    @SerializedName("is_day")
+    @Json(name = "is_day")
     val isDay: Int,
 
+    @Json(name = "condition")
     @Embedded(prefix = "condition_")
-    @SerializedName("condition")
     val condition: Condition,
 
-    @SerializedName("wind_mph")
+    @Json(name = "wind_mph")
     val windMph: Float,
 
-    @SerializedName("wind_kph")
+    @Json(name = "wind_kph")
     val windKph: Float,
 
-    @SerializedName("wind_degree")
+    @Json(name = "wind_degree")
     val windDegree: Int,
 
-    @SerializedName("wind_dir")
+    @Json(name = "wind_dir")
     val windDir: String,
 
-    @SerializedName("pressure_mb")
+    @Json(name = "pressure_mb")
     val pressureMb: Float,
 
-    @SerializedName("pressure_in")
+    @Json(name = "pressure_in")
     val pressureIn: Float,
 
-    @SerializedName("precip_mm")
+    @Json(name = "precip_mm")
     val precipMm: Float,
 
-    @SerializedName("precip_in")
+    @Json(name = "precip_in")
     val precipIn: Float,
 
-    @SerializedName("humidity")
+    @Json(name = "humidity")
     val humidity: Int,
 
-    @SerializedName("cloud")
+    @Json(name = "cloud")
     val cloud: Int,
 
-    @SerializedName("feelslike_c")
+    @Json(name = "feelslike_c")
     val feelslikeC: Float,
 
-    @SerializedName("feelslike_f")
+    @Json(name = "feelslike_f")
     val feelslikeF: Float,
 
-    @SerializedName("vis_km")
+    @Json(name = "vis_km")
     val visKm: Float,
 
-    @SerializedName("vis_miles")
+    @Json(name = "vis_miles")
     val visMiles: Float,
 
-    @SerializedName("uv")
+    @Json(name = "uv")
     val uv: Float,
 
-    @SerializedName("gust_mph")
+    @Json(name = "gust_mph")
     val gustMph: Float,
 
-    @SerializedName("gust_kph")
+    @Json(name = "gust_kph")
     val gustKph: Float
 ) {
     @PrimaryKey(autoGenerate = false)
-    var id: Int = CURRENT_WEATHER_ID
+    var id: Int? = -1
+        get() = 0
 }

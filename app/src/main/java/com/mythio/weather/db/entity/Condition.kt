@@ -1,15 +1,17 @@
 package com.mythio.weather.db.entity
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Condition(
 
-    @SerializedName("text")
+    @Json(name = "text")
     var text: String,
 
-    @SerializedName("icon")
+    @Json(name = "icon")
     var icon: String,
 
-    @SerializedName("code")
+    @Json(name = "code")
     var code: Int
 )

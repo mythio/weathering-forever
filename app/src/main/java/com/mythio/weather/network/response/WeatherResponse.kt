@@ -1,10 +1,12 @@
 package com.mythio.weather.network.response
 
-import com.google.gson.annotations.SerializedName
 import com.mythio.weather.db.entity.CurrentWeather
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class WeatherResponse(
 
-    @SerializedName("current")
+    @Json(name = "current")
     val current: CurrentWeather
 )
