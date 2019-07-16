@@ -17,10 +17,10 @@ data class CurrentWeather(
     val lastUpdated: String,
 
     @Json(name = "temp_c")
-    val tempC: Float,
+    val tempC: Double,
 
     @Json(name = "temp_f")
-    val tempF: Float,
+    val tempF: Double,
 
     @Json(name = "is_day")
     val isDay: Int,
@@ -30,10 +30,10 @@ data class CurrentWeather(
     val condition: Condition,
 
     @Json(name = "wind_mph")
-    val windMph: Float,
+    val windMph: Double,
 
     @Json(name = "wind_kph")
-    val windKph: Float,
+    val windKph: Double,
 
     @Json(name = "wind_degree")
     val windDegree: Int,
@@ -42,16 +42,16 @@ data class CurrentWeather(
     val windDir: String,
 
     @Json(name = "pressure_mb")
-    val pressureMb: Float,
+    val pressureMb: Double,
 
     @Json(name = "pressure_in")
-    val pressureIn: Float,
+    val pressureIn: Double,
 
     @Json(name = "precip_mm")
-    val precipMm: Float,
+    val precipMm: Double,
 
     @Json(name = "precip_in")
-    val precipIn: Float,
+    val precipIn: Double,
 
     @Json(name = "humidity")
     val humidity: Int,
@@ -60,25 +60,25 @@ data class CurrentWeather(
     val cloud: Int,
 
     @Json(name = "feelslike_c")
-    val feelslikeC: Float,
+    val feelslikeC: Double,
 
     @Json(name = "feelslike_f")
-    val feelslikeF: Float,
+    val feelslikeF: Double,
 
     @Json(name = "vis_km")
-    val visKm: Float,
+    val visKm: Double,
 
     @Json(name = "vis_miles")
-    val visMiles: Float,
+    val visMiles: Double,
 
     @Json(name = "uv")
-    val uv: Float,
+    val uv: Double,
 
     @Json(name = "gust_mph")
-    val gustMph: Float,
+    val gustMph: Double,
 
     @Json(name = "gust_kph")
-    val gustKph: Float
+    val gustKph: Double
 ) {
     @PrimaryKey(autoGenerate = false)
     var id: Int? = -1

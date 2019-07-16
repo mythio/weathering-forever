@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.mythio.weather.R
+import com.mythio.weather.Unit
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,20 +19,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.weather.observe(this, Observer { item ->
-            if (item == null) {
+        viewModel.getValuesOfUnit(Unit.IMPERIAL)
+
+        viewModel.currentWeatherImperial?.observe(this, Observer {
+            if (it == null) {
+                Log.d("TAG_TAG_IMPERIAL", "NULL")
                 return@Observer
             }
-            Log.d("TAG_TAG", "Today temp: " + item.temperature)
+            Log.d("TAG_TAG_IMPERIAL", "OBSERVED")
         })
 
-        viewModel.weatherForecast.observe(this, Observer { item ->
-            if (item == null) {
+        viewModel.currentWeatherMetric?.observe(this, Observer {
+            if (it == null) {
+                Log.d("TAG_TAG_METRIC", "NULL")
                 return@Observer
             }
-            for (forecast in item) {
-                Log.d("TAG_TAG", "Future temp: " + forecast.maxtemp)
-            }
+            Log.d("TAG_TAG_METRIC", "OBSERVED")
         })
     }
 }

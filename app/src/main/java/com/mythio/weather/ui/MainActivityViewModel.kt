@@ -2,38 +2,39 @@ package com.mythio.weather.ui
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.mythio.weather.Unit
 import com.mythio.weather.db.getDatabase
+import com.mythio.weather.db.model.domain.current.CurrentWeatherImperial
+import com.mythio.weather.db.model.domain.current.CurrentWeatherMetric
 import com.mythio.weather.repository.WeatherRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import timber.log.Timber
-import java.io.IOException
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
     private val weatherRepository = WeatherRepository(getDatabase(application))
 
-    val weather = weatherRepository.weather
-    val weatherForecast = weatherRepository.weatherForecast
-
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
+    var currentWeatherImperial: LiveData<CurrentWeatherImperial>? = null
+    var currentWeatherMetric: LiveData<CurrentWeatherMetric>? = null
+
     init {
-        getFromRepo()
+        viewModelScope.launch {
+            weatherRepository.getWeatherForecast()
+        }
     }
 
-    private fun getFromRepo() {
-        viewModelScope.launch {
-            try {
-                weatherRepository.get()
-            } catch (e: IOException) {
-                Timber.tag("TAG_TAG_TAG").d(e.message)
-            }
+    fun getValuesOfUnit(unit: Unit) {
+        when (unit) {
+            Unit.METRIC -> currentWeatherImperial = weatherRepository.getCurrentWeatherImperial()
+            Unit.IMPERIAL -> currentWeatherMetric = weatherRepository.getCurrentWeatherMetric()
         }
     }
 

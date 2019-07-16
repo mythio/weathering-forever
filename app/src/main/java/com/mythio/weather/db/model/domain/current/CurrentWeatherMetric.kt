@@ -2,23 +2,26 @@ package com.mythio.weather.db.model.domain.current
 
 import androidx.room.ColumnInfo
 
-data class CurrentWeatherUnitImplImperial(
+data class CurrentWeatherMetric(
 
-    @ColumnInfo(name = "tempF")
+    @ColumnInfo(name = "tempC")
     override val temperature: Double,
 
     @ColumnInfo(name = "condition_text")
     override val conditionText: String,
 
-    @ColumnInfo(name = "windMph")
+    @ColumnInfo(name = "condition_code")
+    override val conditionCode: Int,
+
+    @ColumnInfo(name = "windKph")
     override val windSpeed: Double,
 
     @ColumnInfo(name = "windDir")
     override val windDirection: String,
 
-    @ColumnInfo(name = "precipIn")
+    @ColumnInfo(name = "precipMm")
     override val precipitation: Double,
 
-    @ColumnInfo(name = "feelslikeF")
+    @ColumnInfo(name = "feelslikeC")
     override val feelsLikeTemperature: Double
-) : CurrentWeatherUnitImpl
+) : CurrentWeather
