@@ -1,12 +1,12 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.mythio.weather.R
 import com.mythio.weather.Unit
+import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,18 +23,18 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.currentWeatherImperial?.observe(this, Observer {
             if (it == null) {
-                Log.d("TAG_TAG_IMPERIAL", "NULL")
+                Timber.tag("TAG_TAG_IMPERIAL").d("NULL")
                 return@Observer
             }
-            Log.d("TAG_TAG_IMPERIAL", "OBSERVED")
+            Timber.tag("TAG_TAG_IMPERIAL").d("OBSERVED")
         })
 
         viewModel.currentWeatherMetric?.observe(this, Observer {
             if (it == null) {
-                Log.d("TAG_TAG_METRIC", "NULL")
+                Timber.tag("TAG_TAG_METRIC").d("NULL")
                 return@Observer
             }
-            Log.d("TAG_TAG_METRIC", "OBSERVED")
+            Timber.tag("TAG_TAG_METRIC").d("OBSERVED")
         })
     }
 }
