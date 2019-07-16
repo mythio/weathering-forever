@@ -1,6 +1,7 @@
 package com.mythio.weather.db.unitspecific.current
 
 interface UnitSpecificCurrentWeather {
+
     val temperature: Double
     val conditionText: String
     val windSpeed: Double

@@ -13,22 +13,21 @@ import com.mythio.weather.db.entity.CurrentWeather
 )
 abstract class WeatherDatabase : RoomDatabase() {
 
-    abstract fun weatherDataDao(): WeatherDao
+    abstract val weatherDao: WeatherDao
+}
 
-    companion object {
+private lateinit var INSTANCE: WeatherDatabase
 
-        private var INSTANCE: WeatherDatabase? = null
-
-        fun getInstance(context: Context): WeatherDatabase? {
-            if (INSTANCE == null) {
-                synchronized(WeatherDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        WeatherDatabase::class.java, "weather.db"
-                    ).build()
-                }
-            }
-            return INSTANCE
+fun getDatabase(context: Context): WeatherDatabase {
+    synchronized(WeatherDatabase::class.java) {
+        if (!::INSTANCE.isInitialized) {
+            INSTANCE = Room.databaseBuilder(
+                context.applicationContext,
+                WeatherDatabase::class.java,
+                "weather"
+            ).build()
         }
     }
+    return INSTANCE
 }
+

@@ -2,7 +2,7 @@ package com.mythio.weather.db.unitspecific.current
 
 import androidx.room.ColumnInfo
 
-class MetricCurrentWeather(
+data class MetricCurrentWeather(
 
     @ColumnInfo(name = "tempC")
     override val temperature: Double,

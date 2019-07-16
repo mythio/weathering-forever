@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mythio.weather.CURRENT_WEATHER_ID
 import com.mythio.weather.db.entity.CurrentWeather
 import com.mythio.weather.db.unitspecific.current.ImperialCurrentWeather
 import com.mythio.weather.db.unitspecific.current.MetricCurrentWeather
@@ -16,9 +15,12 @@ interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun upsert(weather: CurrentWeather)
 
-    @Query(value = "select * from current_weather where id = $CURRENT_WEATHER_ID")
+    @Query("select * from current_weather where id = 0")
     fun getWeatherMetric(): LiveData<MetricCurrentWeather>
 
-    @Query(value = "select * from current_weather where id = $CURRENT_WEATHER_ID")
+    @Query("select * from current_weather where id = 0")
     fun getWeatherImperial(): LiveData<ImperialCurrentWeather>
+
+    @Query("select count(*) from current_weather")
+    fun getCount(): Int
 }
