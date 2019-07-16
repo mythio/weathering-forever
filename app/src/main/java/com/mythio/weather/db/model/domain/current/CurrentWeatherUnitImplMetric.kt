@@ -1,8 +1,8 @@
-package com.mythio.weather.db.unitspecific.current
+package com.mythio.weather.db.model.domain.current
 
 import androidx.room.ColumnInfo
 
-data class MetricCurrentWeather(
+data class CurrentWeatherUnitImplMetric(
 
     @ColumnInfo(name = "tempC")
     override val temperature: Double,
@@ -21,4 +21,4 @@ data class MetricCurrentWeather(
 
     @ColumnInfo(name = "feelslikeC")
     override val feelsLikeTemperature: Double
-) : UnitSpecificCurrentWeather
+) : CurrentWeatherUnitImpl

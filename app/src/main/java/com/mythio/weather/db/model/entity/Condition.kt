@@ -1,4 +1,4 @@
-package com.mythio.weather.db.entity
+package com.mythio.weather.db.model.entity
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

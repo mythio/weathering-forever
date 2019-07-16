@@ -1,6 +1,6 @@
-package com.mythio.weather.db.unitspecific.current
+package com.mythio.weather.db.model.domain.current
 
-interface UnitSpecificCurrentWeather {
+interface CurrentWeatherUnitImpl {
 
     val temperature: Double
     val conditionText: String

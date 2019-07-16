@@ -5,10 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.mythio.weather.db.dao.WeatherDao
-import com.mythio.weather.db.entity.CurrentWeather
+import com.mythio.weather.db.model.entity.CurrentWeather
+import com.mythio.weather.db.model.entity.ForecastWeather
 
 @Database(
-    entities = [CurrentWeather::class],
+    entities = [CurrentWeather::class, ForecastWeather::class],
     version = 1
 )
 abstract class WeatherDatabase : RoomDatabase() {

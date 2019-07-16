@@ -1,6 +1,7 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +21,16 @@ class MainActivity : AppCompatActivity() {
         viewModel.weather.observe(this, Observer { item ->
             if (item == null) {
                 return@Observer
+            }
+            Log.d("TAG_TAG", "Today temp: " + item.temperature)
+        })
+
+        viewModel.weatherForecast.observe(this, Observer { item ->
+            if (item == null) {
+                return@Observer
+            }
+            for (forecast in item) {
+                Log.d("TAG_TAG", "Future temp: " + forecast.maxtemp)
             }
         })
     }

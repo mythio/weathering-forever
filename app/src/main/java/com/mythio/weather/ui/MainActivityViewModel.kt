@@ -18,6 +18,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     private val weatherRepository = WeatherRepository(getDatabase(application))
 
     val weather = weatherRepository.weather
+    val weatherForecast = weatherRepository.weatherForecast
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)

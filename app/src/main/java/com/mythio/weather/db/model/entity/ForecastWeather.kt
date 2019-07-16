@@ -1,4 +1,4 @@
-package com.mythio.weather.db.entity
+package com.mythio.weather.db.model.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity
