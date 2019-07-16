@@ -8,5 +8,8 @@ import com.squareup.moshi.JsonClass
 data class WeatherResponse(
 
     @Json(name = "current")
-    val current: CurrentWeather
+    val current: CurrentWeather,
+
+    @Json(name = "forecast")
+    val forecast: ForecastResponse
 )
