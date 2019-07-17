@@ -35,9 +35,9 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
     }
 
     fun getValuesOfUnit(unit: Unit) {
-        when (unit) {
-            Unit.IMPERIAL -> currentWeather = weatherRepository.getCurrentWeatherImperial()
-            Unit.METRIC -> currentWeather = weatherRepository.getCurrentWeatherMetric()
+        currentWeather = when (unit) {
+            Unit.IMPERIAL -> weatherRepository.getCurrentWeatherImperial()
+            Unit.METRIC -> weatherRepository.getCurrentWeatherMetric()
         }
     }
 
