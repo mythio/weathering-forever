@@ -1,7 +1,6 @@
 package com.mythio.weather.ui
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -14,6 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MainActivityViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -29,7 +29,7 @@ class MainActivityViewModel(application: Application) : AndroidViewModel(applica
             try {
                 weatherRepository.getWeatherForecast()
             } catch (e: Exception) {
-                Log.d("TAG_TAG", "caught!")
+                Timber.tag("TAG_TAG").d("caught!")
             }
         }
     }
