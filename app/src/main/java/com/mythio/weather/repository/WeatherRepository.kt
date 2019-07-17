@@ -31,11 +31,14 @@ class WeatherRepository(private val database: WeatherDatabase) {
 
     suspend fun getWeatherForecast() {
         withContext(Dispatchers.IO) {
-            val weather = WeatherApi
+            val response = WeatherApi
                 .retrofitService
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
-                .await()
-            database.weatherDao.upsertCurrentWeather(weather.current)
+            if (response.isSuccessful) {
+                database.weatherDao.upsertCurrentWeather(response.body()!!.current)
+            } else {
+                throw Exception()
+            }
         }
     }
 }
