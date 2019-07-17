@@ -8,7 +8,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-private val retrofit = Retrofit.Builder()
+private val retrofit = Retrofit
+    .Builder()
     .addConverterFactory(MoshiConverterFactory.create())
     .baseUrl(BASE_URL)
     .build()

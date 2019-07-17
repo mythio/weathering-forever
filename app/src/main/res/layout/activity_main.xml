@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.mythio.weather.ui.MainActivityViewModel" />
+            type="com.mythio.weather.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,6 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@{viewModel.currentWeather.conditionText}"
-            android:textSize="40dp"
             tools:text="APPLE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
