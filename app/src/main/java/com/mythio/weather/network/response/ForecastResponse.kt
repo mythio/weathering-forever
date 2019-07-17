@@ -1,6 +1,6 @@
 package com.mythio.weather.network.response
 
-import com.mythio.weather.db.model.entity.ForecastWeather
+import com.mythio.weather.db.model.entity.ForecastW
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -8,5 +8,5 @@ import com.squareup.moshi.JsonClass
 data class ForecastResponse(
 
     @Json(name = "forecastday")
-    val forecastday: List<ForecastWeather>
+    val forecastday: List<ForecastW>
 )

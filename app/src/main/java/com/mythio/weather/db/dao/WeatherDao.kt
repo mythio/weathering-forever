@@ -5,31 +5,31 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mythio.weather.db.model.domain.current.CurrentWeatherImperial
-import com.mythio.weather.db.model.domain.current.CurrentWeatherMetric
-import com.mythio.weather.db.model.domain.forecast.ForecastWeatherImperial
-import com.mythio.weather.db.model.domain.forecast.ForecastWeatherMetric
-import com.mythio.weather.db.model.entity.CurrentWeather
-import com.mythio.weather.db.model.entity.ForecastWeather
+import com.mythio.weather.db.model.entity.CurrentW
+import com.mythio.weather.db.model.entity.ForecastW
+import com.mythio.weather.db.model.entity.current.CurrentImperial
+import com.mythio.weather.db.model.entity.current.CurrentMetric
+import com.mythio.weather.db.model.entity.forecast.ForecastImperial
+import com.mythio.weather.db.model.entity.forecast.ForecastMetric
 
 @Dao
 interface WeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsert(weather: CurrentWeather)
+    fun upsertCurrentWeather(w: CurrentW)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertForecast(weather: List<ForecastWeather>)
+    fun upsertForecastWeather(w: List<ForecastW>)
 
     @Query("select * from current_weather where id = 0")
-    fun getCurrentWeatherMetric(): LiveData<CurrentWeatherMetric>
+    fun getCurrentWeatherMetric(): LiveData<CurrentMetric>
 
     @Query("select * from current_weather where id = 0")
-    fun getCurrentWeatherImperial(): LiveData<CurrentWeatherImperial>
+    fun getCurrentWeatherImperial(): LiveData<CurrentImperial>
 
     @Query("select * from forecast_weather")
-    fun getForecastMetric(): LiveData<List<ForecastWeatherMetric>>
+    fun getForecastMetric(): LiveData<List<ForecastMetric>>
 
     @Query("select * from forecast_weather")
-    fun getForecastImperial(): LiveData<List<ForecastWeatherImperial>>
+    fun getForecastImperial(): LiveData<List<ForecastImperial>>
 }

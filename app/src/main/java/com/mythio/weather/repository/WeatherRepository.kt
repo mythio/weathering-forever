@@ -1,24 +1,32 @@
 package com.mythio.weather.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import com.mythio.weather.db.WeatherDatabase
-import com.mythio.weather.db.model.domain.current.CurrentWeatherImperial
-import com.mythio.weather.db.model.domain.current.CurrentWeatherMetric
+import com.mythio.weather.db.model.domain.CurrentWeather
+import com.mythio.weather.db.model.domain.convert
 import com.mythio.weather.network.WeatherApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class WeatherRepository(private val database: WeatherDatabase) {
 
-    private val weatherImp = database.weatherDao.getCurrentWeatherImperial()
-    private val weatherMet = database.weatherDao.getCurrentWeatherMetric()
+    private val weatherImperial: LiveData<CurrentWeather> =
+        Transformations.map(database.weatherDao.getCurrentWeatherImperial()) { weather ->
+            weather.convert()
+        }
 
-    fun getCurrentWeatherImperial(): LiveData<CurrentWeatherImperial> {
-        return weatherImp
+    private val weatherMetric: LiveData<CurrentWeather> =
+        Transformations.map(database.weatherDao.getCurrentWeatherMetric()) { weather ->
+            weather.convert()
+        }
+
+    fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
+        return weatherImperial
     }
 
-    fun getCurrentWeatherMetric(): LiveData<CurrentWeatherMetric> {
-        return weatherMet
+    fun getCurrentWeatherMetric(): LiveData<CurrentWeather> {
+        return weatherMetric
     }
 
     suspend fun getWeatherForecast() {
@@ -27,7 +35,7 @@ class WeatherRepository(private val database: WeatherDatabase) {
                 .retrofitService
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
                 .await()
-            database.weatherDao.upsert(weather.current)
+            database.weatherDao.upsertCurrentWeather(weather.current)
         }
     }
 }
