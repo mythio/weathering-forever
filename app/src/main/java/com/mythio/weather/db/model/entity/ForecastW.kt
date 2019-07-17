@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 @Entity(tableName = "forecast_weather")
-data class ForecastWeather(
+data class ForecastW(
 
     @Json(name = "date")
     @PrimaryKey

@@ -1,12 +1,12 @@
-package com.mythio.weather.db.model.domain.forecast
+package com.mythio.weather.db.model.entity.forecast
 
 import androidx.room.ColumnInfo
 
-data class ForecastWeatherImperial(
+data class ForecastImperial(
 
     @ColumnInfo(name = "day_maxtempF")
     override val maxtemp: Double,
 
     @ColumnInfo(name = "day_condition_text")
     override val conditionText: String
-) : ForecastWeather
+) : Forecast

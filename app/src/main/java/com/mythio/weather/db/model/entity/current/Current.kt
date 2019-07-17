@@ -1,12 +1,13 @@
-package com.mythio.weather.db.model.domain.current
+package com.mythio.weather.db.model.entity.current
 
-interface CurrentWeather {
+interface Current {
 
     val temperature: Double
     val conditionText: String
     val conditionCode: Int
     val windSpeed: Double
     val windDirection: String
-    val precipitation: Double
+    val humidity: Int
     val feelsLikeTemperature: Double
+    val uvIndex: Double
 }

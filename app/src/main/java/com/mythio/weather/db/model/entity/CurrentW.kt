@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 @Entity(tableName = "current_weather")
-data class CurrentWeather(
+data class CurrentW(
 
     @Json(name = "last_updated_epoch")
     val lastUpdatedEpoch: Int,
