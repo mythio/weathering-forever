@@ -1,4 +1,6 @@
-package com.mythio.weather
+package com.mythio.weather.utils
+
+import com.mythio.weather.R
 
 enum class Unit {
     METRIC,
@@ -56,4 +58,23 @@ val CODE_TO_RES_ID: Map<Int, Int> = hashMapOf(
     1276 to R.drawable.ic_wi_day_storm_showers,
     1279 to R.drawable.ic_wi_day_snow_thunderstorm,
     1282 to R.drawable.ic_wi_day_snow_thunderstorm
+)
+
+val DIR_TO_DEGREE: Map<String, Int> = hashMapOf(
+    "N" to 0,
+    "NNE" to 23,
+    "NE" to 45,
+    "NEN" to 68,
+    "E" to 90,
+    "EES" to 113,
+    "ES" to 135,
+    "ESE" to 158,
+    "S" to 180,
+    "SSW" to 203,
+    "SW" to 225,
+    "SWS" to 248,
+    "W" to 270,
+    "WWN" to 293,
+    "WN" to 313,
+    "WNW" to 336
 )
