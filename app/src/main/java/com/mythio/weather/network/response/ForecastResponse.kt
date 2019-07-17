@@ -1,6 +1,6 @@
 package com.mythio.weather.network.response
 
-import com.mythio.weather.db.model.entity.ForecastW
+import com.mythio.weather.model.entity.ForecastW
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 

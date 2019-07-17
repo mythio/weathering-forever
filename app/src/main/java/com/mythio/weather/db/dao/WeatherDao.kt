@@ -5,12 +5,12 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.mythio.weather.db.model.entity.CurrentW
-import com.mythio.weather.db.model.entity.ForecastW
-import com.mythio.weather.db.model.entity.current.CurrentImperial
-import com.mythio.weather.db.model.entity.current.CurrentMetric
-import com.mythio.weather.db.model.entity.forecast.ForecastImperial
-import com.mythio.weather.db.model.entity.forecast.ForecastMetric
+import com.mythio.weather.model.entity.CurrentW
+import com.mythio.weather.model.entity.ForecastW
+import com.mythio.weather.model.entity.current.CurrentImperial
+import com.mythio.weather.model.entity.current.CurrentMetric
+import com.mythio.weather.model.entity.forecast.ForecastImperial
+import com.mythio.weather.model.entity.forecast.ForecastMetric
 
 @Dao
 interface WeatherDao {

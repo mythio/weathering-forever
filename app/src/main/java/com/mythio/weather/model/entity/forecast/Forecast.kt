@@ -1,4 +1,4 @@
-package com.mythio.weather.db.model.entity.forecast
+package com.mythio.weather.model.entity.forecast
 
 interface Forecast {
 

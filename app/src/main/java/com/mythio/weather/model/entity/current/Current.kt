@@ -1,4 +1,4 @@
-package com.mythio.weather.db.model.entity.current
+package com.mythio.weather.model.entity.current
 
 interface Current {
 

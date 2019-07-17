@@ -1,4 +1,4 @@
-package com.mythio.weather.db.model.entity
+package com.mythio.weather.model.entity
 
 import androidx.room.Embedded
 import com.squareup.moshi.Json

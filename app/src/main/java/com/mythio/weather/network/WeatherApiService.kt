@@ -1,7 +1,7 @@
 package com.mythio.weather.network
 
-import com.mythio.weather.BASE_URL
 import com.mythio.weather.network.response.WeatherResponse
+import com.mythio.weather.utils.BASE_URL
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

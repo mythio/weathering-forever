@@ -1,4 +1,4 @@
-package com.mythio.weather.db.model.entity.current
+package com.mythio.weather.model.entity.current
 
 import androidx.room.ColumnInfo
 

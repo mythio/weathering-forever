@@ -1,6 +1,6 @@
-package com.mythio.weather.db.model.domain
+package com.mythio.weather.model.domain
 
-import com.mythio.weather.Unit
+import com.mythio.weather.utils.Unit
 
 class ForecastWeather(
 

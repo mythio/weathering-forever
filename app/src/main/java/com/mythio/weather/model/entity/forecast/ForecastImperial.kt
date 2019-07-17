@@ -1,10 +1,10 @@
-package com.mythio.weather.db.model.entity.forecast
+package com.mythio.weather.model.entity.forecast
 
 import androidx.room.ColumnInfo
 
-data class ForecastMetric(
+data class ForecastImperial(
 
-    @ColumnInfo(name = "day_avgtempC")
+    @ColumnInfo(name = "day_avgtempF")
     override val temperature: Double,
 
     @ColumnInfo(name = "day_condition_code")

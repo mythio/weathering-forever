@@ -3,8 +3,8 @@ package com.mythio.weather.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.mythio.weather.db.WeatherDatabase
-import com.mythio.weather.db.model.domain.CurrentWeather
-import com.mythio.weather.db.model.domain.ForecastWeather
+import com.mythio.weather.model.domain.CurrentWeather
+import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.network.WeatherApi
 import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
@@ -53,6 +53,7 @@ class WeatherRepositoryImpl(
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
             if (response.isSuccessful) {
                 database.weatherDao.upsertCurrentWeather(response.body()!!.current)
+                database.weatherDao.upsertForecastWeather(response.body()!!.forecast.forecastday)
             } else {
                 throw Exception()
             }

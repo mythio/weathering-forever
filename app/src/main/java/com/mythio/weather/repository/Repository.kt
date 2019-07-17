@@ -1,8 +1,8 @@
 package com.mythio.weather.repository
 
 import androidx.lifecycle.LiveData
-import com.mythio.weather.db.model.domain.CurrentWeather
-import com.mythio.weather.db.model.domain.ForecastWeather
+import com.mythio.weather.model.domain.CurrentWeather
+import com.mythio.weather.model.domain.ForecastWeather
 
 interface Repository {
 

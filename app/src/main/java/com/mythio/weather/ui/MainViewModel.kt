@@ -5,11 +5,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mythio.weather.Unit
 import com.mythio.weather.db.getDatabase
-import com.mythio.weather.db.model.domain.CurrentWeather
-import com.mythio.weather.db.model.domain.ForecastWeather
+import com.mythio.weather.model.domain.CurrentWeather
+import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.repository.WeatherRepositoryImpl
+import com.mythio.weather.utils.Unit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
