@@ -4,9 +4,9 @@ import androidx.room.ColumnInfo
 
 data class ForecastImperial(
 
-    @ColumnInfo(name = "day_maxtempF")
-    override val maxtemp: Double,
+    @ColumnInfo(name = "day_avgtempF")
+    override val temperature: Double,
 
-    @ColumnInfo(name = "day_condition_text")
-    override val conditionText: String
+    @ColumnInfo(name = "day_condition_code")
+    override val conditionCode: Int
 ) : Forecast

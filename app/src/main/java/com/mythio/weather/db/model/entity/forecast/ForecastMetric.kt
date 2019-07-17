@@ -4,9 +4,9 @@ import androidx.room.ColumnInfo
 
 data class ForecastMetric(
 
-    @ColumnInfo(name = "day_maxtempC")
-    override val maxtemp: Double,
+    @ColumnInfo(name = "day_avgtempC")
+    override val temperature: Double,
 
-    @ColumnInfo(name = "day_condition_text")
-    override val conditionText: String
+    @ColumnInfo(name = "day_condition_code")
+    override val conditionCode: Int
 ) : Forecast

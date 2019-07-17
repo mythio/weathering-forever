@@ -12,9 +12,9 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainActivityViewModel by lazy {
-        ViewModelProviders.of(this, MainActivityViewModel.ViewModelFactory(this.application))
-            .get(MainActivityViewModel::class.java)
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this, MainViewModel.ViewModelFactory(this.application))
+            .get(MainViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
