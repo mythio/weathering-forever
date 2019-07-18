@@ -9,56 +9,35 @@ enum class Unit {
 
 const val BASE_URL = "http://api.apixu.com/v1/"
 
-val CODE_TO_RES_ID: Map<Int, Int> = hashMapOf(
-    1000 to R.drawable.ic_wi_day_sunny,
-    1003 to R.drawable.ic_wi_day_cloudy,
-    1006 to R.drawable.ic_wi_day_cloudy,
-    1009 to R.drawable.ic_wi_day_cloudy_high,
-    1030 to R.drawable.ic_wi_day_fog,
-    1063 to R.drawable.ic_wi_day_showers,
-    1066 to R.drawable.ic_wi_day_snow,
-    1069 to R.drawable.ic_wi_day_sleet,
-    1072 to R.drawable.ic_wi_day_rain_mix,
-    1087 to R.drawable.ic_wi_day_lightning,
-    1114 to R.drawable.ic_wi_day_snow_wind,
-    1117 to R.drawable.ic_wi_day_snow_wind,
-    1135 to R.drawable.ic_wi_day_fog,
-    1147 to R.drawable.ic_wi_day_fog,
-    1150 to R.drawable.ic_wi_day_showers,
-    1153 to R.drawable.ic_wi_day_showers,
-    1168 to R.drawable.ic_wi_day_rain_mix,
-    1171 to R.drawable.ic_wi_day_rain_mix,
-    1180 to R.drawable.ic_wi_day_showers,
-    1183 to R.drawable.ic_wi_day_showers,
-    1186 to R.drawable.ic_wi_day_showers,
-    1189 to R.drawable.ic_wi_day_showers,
-    1192 to R.drawable.ic_wi_day_rain,
-    1195 to R.drawable.ic_wi_day_rain,
-    1198 to R.drawable.ic_wi_day_rain_mix,
-    1201 to R.drawable.ic_wi_day_rain_mix,
-    1204 to R.drawable.ic_wi_day_hail,
-    1207 to R.drawable.ic_wi_day_hail,
-    1210 to R.drawable.ic_wi_day_snow,
-    1213 to R.drawable.ic_wi_day_snow,
-    1216 to R.drawable.ic_wi_day_snow,
-    1219 to R.drawable.ic_wi_day_snow,
-    1222 to R.drawable.ic_wi_day_snow,
-    1225 to R.drawable.ic_wi_day_snow,
-    1237 to R.drawable.ic_wi_day_hail,
-    1240 to R.drawable.ic_wi_day_showers,
-    1243 to R.drawable.ic_wi_day_showers,
-    1246 to R.drawable.ic_wi_day_rain,
-    1249 to R.drawable.ic_wi_day_sleet,
-    1252 to R.drawable.ic_wi_day_sleet,
-    1255 to R.drawable.ic_wi_day_snow,
-    1258 to R.drawable.ic_wi_day_snow,
-    1261 to R.drawable.ic_wi_day_hail,
-    1264 to R.drawable.ic_wi_day_hail,
-    1273 to R.drawable.ic_wi_day_storm_showers,
-    1276 to R.drawable.ic_wi_day_storm_showers,
-    1279 to R.drawable.ic_wi_day_snow_thunderstorm,
-    1282 to R.drawable.ic_wi_day_snow_thunderstorm
-)
+fun code_condition(code: Int): String {
+    return when (code) {
+        1273, 1276, 1204, 1207, 1135, 1147, 1069, 1030, 1003, 1006, 1009 ->
+            "Cloudy"
+        1240, 1243, 1246, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1063, 1072 ->
+            "Rain"
+        1279, 1282, 1249, 1252, 1255, 1258, 1261, 1264, 1237, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1066, 1114 ->
+            "Snow"
+        1087 ->
+            "Thunder"
+        else ->
+            "Clear"
+    }
+}
+
+fun code_icon_res(code: Int): Int {
+    return when (code) {
+        1273, 1276, 1204, 1207, 1135, 1147, 1069, 1030, 1003, 1006, 1009 ->
+            R.drawable.ic_cloud
+        1240, 1243, 1246, 1150, 1153, 1168, 1171, 1180, 1183, 1186, 1189, 1192, 1195, 1198, 1201, 1063, 1072 ->
+            R.drawable.ic_cloud_rain
+        1279, 1282, 1249, 1252, 1255, 1258, 1261, 1264, 1237, 1117, 1210, 1213, 1216, 1219, 1222, 1225, 1066, 1114 ->
+            R.drawable.ic_cloud_snow
+        1087 ->
+            R.drawable.ic_cloud_lightning
+        else ->
+            R.drawable.ic_sun
+    }
+}
 
 val DIR_TO_DEGREE: Map<String, Int> = hashMapOf(
     "N" to 0,

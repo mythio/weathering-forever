@@ -3,7 +3,6 @@ package com.mythio.weather.model.entity.current
 interface Current {
 
     val temperature: Double
-    val conditionText: String
     val conditionCode: Int
     val windSpeed: Double
     val windDirection: String

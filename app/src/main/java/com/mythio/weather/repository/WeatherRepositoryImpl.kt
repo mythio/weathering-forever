@@ -17,14 +17,14 @@ class WeatherRepositoryImpl(
     override fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
         return Transformations
             .map(database.weatherDao.getCurrentWeatherImperial()) { weather ->
-                weather.convert()
+                weather?.convert()
             }
     }
 
     override fun getCurrentWeatherMetric(): LiveData<CurrentWeather> {
         return Transformations
             .map(database.weatherDao.getCurrentWeatherMetric()) { weather ->
-                weather.convert()
+                weather?.convert()
             }
     }
 

@@ -7,9 +7,6 @@ data class CurrentImperial(
     @ColumnInfo(name = "tempF")
     override val temperature: Double,
 
-    @ColumnInfo(name = "condition_text")
-    override val conditionText: String,
-
     @ColumnInfo(name = "condition_code")
     override val conditionCode: Int,
 

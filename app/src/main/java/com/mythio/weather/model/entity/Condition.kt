@@ -7,11 +7,11 @@ import com.squareup.moshi.JsonClass
 data class Condition(
 
     @Json(name = "text")
-    var text: String,
+    val text: String,
 
     @Json(name = "icon")
-    var icon: String,
+    val icon: String,
 
     @Json(name = "code")
-    var code: Int
+    val code: Int
 )

@@ -81,6 +81,6 @@ data class CurrentW(
     val gustKph: Double
 ) {
     @PrimaryKey(autoGenerate = false)
-    var id: Int? = -1
+    var id: Int = -1
         get() = 0
 }
