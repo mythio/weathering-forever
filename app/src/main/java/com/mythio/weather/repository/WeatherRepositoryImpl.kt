@@ -52,8 +52,10 @@ class WeatherRepositoryImpl(
                 .retrofitService
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
             if (response.isSuccessful) {
-                database.weatherDao.upsertCurrentWeather(response.body()!!.current)
-                database.weatherDao.upsertForecastWeather(response.body()!!.forecast.forecastday)
+                val data = response.body()!!
+                data.current.location = data.location
+                database.weatherDao.upsertCurrentWeather(data.current)
+                database.weatherDao.upsertForecastWeather(data.forecast.forecastday)
             } else {
                 throw Exception()
             }

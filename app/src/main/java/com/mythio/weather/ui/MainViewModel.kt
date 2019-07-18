@@ -35,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 weatherRepository.getWeatherForecast()
             } catch (e: Exception) {
-                Timber.tag("TAG_TAG").d("caught!")
+                Timber.tag("TAG_TAG").d(e)
             }
         }
     }
