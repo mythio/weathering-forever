@@ -1,13 +1,11 @@
 package com.mythio.weather.ui
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import com.mythio.weather.db.getDatabase
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
+import com.mythio.weather.network.response.Location
 import com.mythio.weather.repository.WeatherRepositoryImpl
 import com.mythio.weather.utils.Unit
 import kotlinx.coroutines.CoroutineScope
@@ -26,17 +24,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     lateinit var currentWeather: LiveData<CurrentWeather>
     lateinit var forecastWeather: LiveData<List<ForecastWeather>>
 
+    private val _searchResult = MutableLiveData<List<Location>>()
+    val searchResult: LiveData<List<Location>>
+        get() = _searchResult
+
     init {
         getWeather()
+        search()
     }
 
     private fun getWeather() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                weatherRepository.getWeatherForecast()
+                weatherRepository.getWeather()
             } catch (e: Exception) {
                 Timber.tag("TAG_TAG").d(e)
             }
+        }
+    }
+
+    private fun search() {
+        viewModelScope.launch {
+            _searchResult.value = weatherRepository.searchLocation("merces")
         }
     }
 
