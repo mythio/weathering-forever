@@ -41,7 +41,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:temperature="@{viewModel.currentWeather.temperature}"
             app:unit="@{viewModel.currentWeather.unit}"
-            tools:text="34\u2103" />
+            tools:text="34\u00B0C" />
 
         <TextView
             android:id="@+id/tv_location"

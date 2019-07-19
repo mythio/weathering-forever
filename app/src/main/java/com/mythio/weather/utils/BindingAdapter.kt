@@ -13,8 +13,8 @@ fun imageBinding(img: ImageView, resId: Int) {
 @BindingAdapter(value = ["temperature", "unit"], requireAll = true)
 fun temperatureTextBinding(txt: TextView, temperature: Double?, unit: Unit?) {
     txt.text = when (unit) {
-        Unit.METRIC -> "" + temperature + "\u2103"
-        Unit.IMPERIAL -> "" + temperature + "\u2109"
+        Unit.METRIC -> "" + temperature + "\u00B0C"
+        Unit.IMPERIAL -> "" + temperature + "\u00B0F"
         else -> return
     }
 }
@@ -22,8 +22,8 @@ fun temperatureTextBinding(txt: TextView, temperature: Double?, unit: Unit?) {
 @BindingAdapter(value = ["windSpeed", "unit"], requireAll = true)
 fun windTextBinding(txt: TextView, windSpeed: Double?, unit: Unit?) {
     txt.text = when (unit) {
-        Unit.METRIC -> "" + windSpeed + " kmph"
-        Unit.IMPERIAL -> "" + windSpeed + " mph"
+        Unit.METRIC -> "" + windSpeed + " km/h"
+        Unit.IMPERIAL -> "" + windSpeed + " mi/h"
         else -> return
     }
 }
