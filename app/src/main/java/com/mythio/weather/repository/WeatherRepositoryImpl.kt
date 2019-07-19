@@ -6,6 +6,7 @@ import com.mythio.weather.db.WeatherDatabase
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.network.WeatherApi
+import com.mythio.weather.network.response.Location
 import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -46,8 +47,15 @@ class WeatherRepositoryImpl(
             }
     }
 
-    suspend fun getWeatherForecast() {
-        withContext(Dispatchers.IO) {
+    override suspend fun searchLocation(location: String): List<Location> {
+        return WeatherApi
+            .retrofitService
+            .getSearchLocationAsync("70ef3b7f24484a918b782502191207", location)
+            .body()!!
+    }
+
+    override suspend fun getWeather() {
+        return withContext(Dispatchers.IO) {
             val response = WeatherApi
                 .retrofitService
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
