@@ -13,8 +13,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.IOException
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
     private val weatherRepository = WeatherRepositoryImpl(getDatabase(application))
 
@@ -23,6 +24,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     lateinit var currentWeather: LiveData<CurrentWeather>
     lateinit var forecastWeather: LiveData<List<ForecastWeather>>
+
+    private val _weatherResult = MutableLiveData<CurrentWeather>()
+    val weatherResult: LiveData<CurrentWeather>
+        get() = _weatherResult
 
     private val _searchResult = MutableLiveData<List<Location>>()
     val searchResult: LiveData<List<Location>>
@@ -34,18 +39,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     private fun getWeather() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             try {
                 weatherRepository.getWeather()
-            } catch (e: Exception) {
-                Timber.tag("TAG_TAG").d(e)
+            } catch (e: IOException) {
+                Timber.tag("TAG_TAG").e(e)
             }
         }
     }
 
     private fun search() {
         viewModelScope.launch {
-            _searchResult.value = weatherRepository.searchLocation("merces")
+            try {
+                _searchResult.value = weatherRepository.searchLocation("merces")
+            } catch (e: Exception) {
+
+            }
         }
     }
 
@@ -67,10 +76,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelJob.cancel()
     }
 
-    class ViewModelFactory(private val app: Application) : ViewModelProvider.Factory {
+    class Factory(private val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
-                return MainViewModel(app) as T
+            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+                return WeatherViewModel(app) as T
             }
             throw IllegalArgumentException("Unable to construct viewmodel")
         }
