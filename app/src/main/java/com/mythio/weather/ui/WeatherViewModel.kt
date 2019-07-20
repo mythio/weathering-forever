@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.mythio.weather.db.getDatabase
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.network.response.Location
 import com.mythio.weather.repository.WeatherRepositoryImpl
 import com.mythio.weather.utils.Unit
 import kotlinx.coroutines.CoroutineScope
@@ -14,6 +13,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.io.IOException
+
 
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,13 +25,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     lateinit var currentWeather: LiveData<CurrentWeather>
     lateinit var forecastWeather: LiveData<List<ForecastWeather>>
 
-    private val _weatherResult = MutableLiveData<CurrentWeather>()
-    val weatherResult: LiveData<CurrentWeather>
-        get() = _weatherResult
-
-    private val _searchResult = MutableLiveData<List<Location>>()
-    val searchResult: LiveData<List<Location>>
-        get() = _searchResult
+    var str = MutableLiveData<String>()
 
     init {
         getWeather()
@@ -51,7 +45,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     private fun search() {
         viewModelScope.launch {
             try {
-                _searchResult.value = weatherRepository.searchLocation("merces")
+//                _searchResult.value = weatherRepository.searchLocation("merces")
             } catch (e: Exception) {
 
             }

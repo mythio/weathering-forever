@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="forecastWeather"
+            type="com.mythio.weather.model.domain.ForecastWeather" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="THU"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_sun"
+            app:resId="@{forecastWeather.conditionIconRes}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="35\u00B0C"
+            android:textSize="16sp"
+            app:temperature="@{forecastWeather.temperature}"
+            app:unit="@{forecastWeather.unit}" />
+
+    </LinearLayout>
+</layout>

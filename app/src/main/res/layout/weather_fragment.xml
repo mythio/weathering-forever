@@ -15,6 +15,7 @@
         tools:context=".ui.MainActivity">
 
         <ImageButton
+            android:id="@+id/p"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_margin="16dp"
@@ -29,7 +30,7 @@
             android:id="@+id/tv_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="120dp"
             android:includeFontPadding="false"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="48dp"
@@ -94,6 +95,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -126,6 +128,57 @@
             app:layout_constraintStart_toStartOf="@+id/iv_humidity"
             app:layout_constraintTop_toBottomOf="@+id/iv_humidity"
             tools:text="21%" />
+
+        <include
+            android:id="@+id/forecast_1"
+            layout="@layout/item_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="56dp"
+            app:forecastWeather="@{viewModel.forecastWeather[0]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forecast_2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/forecast_2"
+            layout="@layout/item_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="56dp"
+            app:forecastWeather="@{viewModel.forecastWeather[1]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forecast_3"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/forecast_1" />
+
+        <include
+            android:id="@+id/forecast_3"
+            layout="@layout/item_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="56dp"
+            app:forecastWeather="@{viewModel.forecastWeather[2]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/forecast_4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/forecast_2" />
+
+        <include
+            android:id="@+id/forecast_4"
+            layout="@layout/item_forecast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="56dp"
+            app:forecastWeather="@{viewModel.forecastWeather[3]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/forecast_3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
