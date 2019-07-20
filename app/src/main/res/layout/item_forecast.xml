@@ -12,6 +12,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -23,8 +24,8 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/ic_sun"
             app:resId="@{forecastWeather.conditionIconRes}" />
 
