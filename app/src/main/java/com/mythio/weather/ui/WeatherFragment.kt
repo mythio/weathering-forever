@@ -13,6 +13,8 @@ import androidx.navigation.fragment.findNavController
 import com.mythio.weather.R
 import com.mythio.weather.databinding.WeatherFragmentBinding
 import com.mythio.weather.utils.Unit
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import kotlinx.android.synthetic.main.weather_fragment.*
 
 class WeatherFragment : Fragment() {
@@ -44,16 +46,28 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        p.setOnClickListener {
-            findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToSearchFragment())
-        }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel.getValuesOfUnit(Unit.METRIC)
         viewModel.str.observe(this, Observer {
+
             Log.d("TAG_TAG", it)
+        })
+
+        ib_search.setOnClickListener {
+
+            findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToSearchFragment())
+        }
+
+        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                super.onRefresh(refreshLayout)
+                viewModel.refreshData()
+            }
+        })
+
+        viewModel.isRefreshed.observe(this, Observer {
+
+            refreshLayout.finishRefresh(2)
         })
     }
 }

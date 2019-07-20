@@ -25,6 +25,10 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     lateinit var currentWeather: LiveData<CurrentWeather>
     lateinit var forecastWeather: LiveData<List<ForecastWeather>>
 
+    private val _isRefreshed = MutableLiveData<Boolean>()
+    val isRefreshed: LiveData<Boolean>
+        get() = _isRefreshed
+
     var str = MutableLiveData<String>()
 
     init {
@@ -36,6 +40,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             try {
                 weatherRepository.getWeather()
+                _isRefreshed.value = true
             } catch (e: IOException) {
                 Timber.tag("TAG_TAG").e(e)
             }
@@ -63,6 +68,10 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                 forecastWeather = weatherRepository.getForecastWeatherMetric()
             }
         }
+    }
+
+    fun refreshData() {
+        getWeather()
     }
 
     override fun onCleared() {

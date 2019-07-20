@@ -9,176 +9,197 @@
             type="com.mythio.weather.ui.WeatherViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/p"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_margin="16dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_search"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="32dp" />
-
-        <TextView
-            android:id="@+id/tv_temperature"
-            android:layout_width="wrap_content"
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
-            android:includeFontPadding="false"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="48dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:temperature="@{viewModel.currentWeather.temperature}"
-            app:unit="@{viewModel.currentWeather.unit}"
-            tools:text="34\u00B0C" />
+            app:srlAccentColor="@color/colorPrimary"
+            app:srlDrawableArrow="@drawable/ic_refresh"
+            app:srlDrawableMarginRight="12dp"
+            app:srlDrawableProgress="@drawable/ic_refresh"
+            app:srlEnableLastTime="false"
+            app:srlPrimaryColor="@android:color/transparent"
+            app:srlTextFailed="Failed! Please try again"
+            app:srlTextFinish="Done"
+            app:srlTextPulling="Pull to refresh"
+            app:srlTextRefreshing="Refreshing"
+            app:srlTextRelease="Release" />
 
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_map_pin"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:padding="8dp"
-            android:text="@{viewModel.currentWeather.location}"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_temperature"
-            tools:text="Panaji, Goa" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.MainActivity">
 
-        <ImageView
-            android:id="@+id/iv_condition"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="48dp"
-            android:src="@drawable/ic_sun"
-            android:tint="@color/colorPrimaryDark"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/iv_wind"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"
-            app:resId="@{viewModel.currentWeather.conditionIconRes}" />
+            <ImageButton
+                android:id="@+id/ib_search"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_search"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="32dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@{viewModel.currentWeather.conditionText}"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="@+id/iv_condition"
-            app:layout_constraintStart_toStartOf="@+id/iv_condition"
-            app:layout_constraintTop_toBottomOf="@+id/iv_condition"
-            tools:text="Clear" />
+            <TextView
+                android:id="@+id/tv_temperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:includeFontPadding="false"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="48dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:temperature="@{viewModel.currentWeather.temperature}"
+                app:unit="@{viewModel.currentWeather.unit}"
+                tools:text="34\u00B0C" />
 
-        <ImageView
-            android:id="@+id/iv_wind"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_wind"
-            android:tint="@color/colorPrimaryDark"
-            app:layout_constraintLeft_toRightOf="@id/iv_condition"
-            app:layout_constraintRight_toLeftOf="@id/iv_humidity"
-            app:layout_constraintTop_toBottomOf="@id/tv_location" />
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_map_pin"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:padding="8dp"
+                android:text="@{viewModel.currentWeather.location}"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_temperature"
+                tools:text="Panaji, Goa" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintEnd_toEndOf="@+id/iv_wind"
-            app:layout_constraintStart_toStartOf="@+id/iv_wind"
-            app:layout_constraintTop_toBottomOf="@+id/iv_wind"
-            app:unit="@{viewModel.currentWeather.unit}"
-            app:windSpeed="@{viewModel.currentWeather.windSpeed}"
-            tools:text="14 km/h" />
+            <ImageView
+                android:id="@+id/iv_condition"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="48dp"
+                android:src="@drawable/ic_sun"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/iv_wind"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"
+                app:resId="@{viewModel.currentWeather.conditionIconRes}" />
 
-        <ImageView
-            android:id="@+id/iv_humidity"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="48dp"
-            android:src="@drawable/ic_humidity"
-            android:tint="@color/colorPrimaryDark"
-            app:layout_constraintLeft_toRightOf="@id/iv_wind"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_location" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.currentWeather.conditionText}"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="@+id/iv_condition"
+                app:layout_constraintStart_toStartOf="@+id/iv_condition"
+                app:layout_constraintTop_toBottomOf="@+id/iv_condition"
+                tools:text="Clear" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textColor="@color/colorPrimary"
-            app:humidity="@{viewModel.currentWeather.humidity}"
-            app:layout_constraintEnd_toEndOf="@+id/iv_humidity"
-            app:layout_constraintStart_toStartOf="@+id/iv_humidity"
-            app:layout_constraintTop_toBottomOf="@+id/iv_humidity"
-            tools:text="21%" />
+            <ImageView
+                android:id="@+id/iv_wind"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/ic_wind"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toRightOf="@id/iv_condition"
+                app:layout_constraintRight_toLeftOf="@id/iv_humidity"
+                app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
-        <include
-            android:id="@+id/forecast_1"
-            layout="@layout/item_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            app:forecastWeather="@{viewModel.forecastWeather[0]}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forecast_2"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="@+id/iv_wind"
+                app:layout_constraintStart_toStartOf="@+id/iv_wind"
+                app:layout_constraintTop_toBottomOf="@+id/iv_wind"
+                app:unit="@{viewModel.currentWeather.unit}"
+                app:windSpeed="@{viewModel.currentWeather.windSpeed}"
+                tools:text="14 km/h" />
 
-        <include
-            android:id="@+id/forecast_2"
-            layout="@layout/item_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            app:forecastWeather="@{viewModel.forecastWeather[1]}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forecast_3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/forecast_1" />
+            <ImageView
+                android:id="@+id/iv_humidity"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="48dp"
+                android:src="@drawable/ic_humidity"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintLeft_toRightOf="@id/iv_wind"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
-        <include
-            android:id="@+id/forecast_3"
-            layout="@layout/item_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            app:forecastWeather="@{viewModel.forecastWeather[2]}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/forecast_4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/forecast_2" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/colorPrimary"
+                app:humidity="@{viewModel.currentWeather.humidity}"
+                app:layout_constraintEnd_toEndOf="@+id/iv_humidity"
+                app:layout_constraintStart_toStartOf="@+id/iv_humidity"
+                app:layout_constraintTop_toBottomOf="@+id/iv_humidity"
+                tools:text="21%" />
 
-        <include
-            android:id="@+id/forecast_4"
-            layout="@layout/item_forecast"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
-            app:forecastWeather="@{viewModel.forecastWeather[3]}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toEndOf="@+id/forecast_3" />
+            <include
+                android:id="@+id/forecast_1"
+                layout="@layout/item_forecast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                app:forecastWeather="@{viewModel.forecastWeather[0]}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/forecast_2"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                android:id="@+id/forecast_2"
+                layout="@layout/item_forecast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                app:forecastWeather="@{viewModel.forecastWeather[1]}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/forecast_3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/forecast_1" />
+
+            <include
+                android:id="@+id/forecast_3"
+                layout="@layout/item_forecast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                app:forecastWeather="@{viewModel.forecastWeather[2]}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/forecast_4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/forecast_2" />
+
+            <include
+                android:id="@+id/forecast_4"
+                layout="@layout/item_forecast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="56dp"
+                app:forecastWeather="@{viewModel.forecastWeather[3]}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@+id/forecast_3" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </layout>

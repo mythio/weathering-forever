@@ -11,6 +11,7 @@ import androidx.databinding.InverseBindingListener
 
 
 object BindingAdapter {
+
     @BindingAdapter("resId")
     @JvmStatic
     fun imageBinding(img: ImageView, resId: Int) {
