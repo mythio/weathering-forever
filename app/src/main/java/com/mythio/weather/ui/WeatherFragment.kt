@@ -65,11 +65,11 @@ class WeatherFragment : Fragment() {
         viewModel.networkState.observe(this, Observer { networkState ->
             when (networkState) {
                 NetworkState.FINISH -> {
-                    refreshLayout.finishRefresh(2)
+                    refreshLayout.finishRefresh(200)
                 }
                 NetworkState.ERROR -> {
                     Toast.makeText(context, "Can't connect to API", Toast.LENGTH_SHORT).show()
-                    refreshLayout.finishRefresh(2)
+                    refreshLayout.finishRefresh(200)
                 }
                 else -> {
 

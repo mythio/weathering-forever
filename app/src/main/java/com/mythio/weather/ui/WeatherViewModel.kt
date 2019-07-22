@@ -55,7 +55,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                 weatherRepository.getWeather()
                 _networkState.value = NetworkState.FINISH
             } catch (e: IOException) {
-                Timber.tag("TAG_TAG").e(e)
                 _networkState.value = NetworkState.ERROR
             }
         }
