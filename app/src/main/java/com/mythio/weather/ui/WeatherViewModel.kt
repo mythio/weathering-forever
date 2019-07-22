@@ -6,6 +6,7 @@ import com.mythio.weather.db.getDatabase
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.repository.WeatherRepositoryImpl
+import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.Unit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,6 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.io.IOException
-
 
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,37 +25,9 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     lateinit var currentWeather: LiveData<CurrentWeather>
     lateinit var forecastWeather: LiveData<List<ForecastWeather>>
 
-    private val _isRefreshed = MutableLiveData<Boolean>()
-    val isRefreshed: LiveData<Boolean>
-        get() = _isRefreshed
-
-    var str = MutableLiveData<String>()
-
-    init {
-        getWeather()
-        search()
-    }
-
-    private fun getWeather() {
-        viewModelScope.launch {
-            try {
-                weatherRepository.getWeather()
-                _isRefreshed.value = true
-            } catch (e: IOException) {
-                Timber.tag("TAG_TAG").e(e)
-            }
-        }
-    }
-
-    private fun search() {
-        viewModelScope.launch {
-            try {
-//                _searchResult.value = weatherRepository.searchLocation("merces")
-            } catch (e: Exception) {
-
-            }
-        }
-    }
+    private val _networkState = MutableLiveData<NetworkState>()
+    val networkState: LiveData<NetworkState>
+        get() = _networkState
 
     fun getValuesOfUnit(unit: Unit) {
         when (unit) {
@@ -68,10 +40,25 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                 forecastWeather = weatherRepository.getForecastWeatherMetric()
             }
         }
+
+        getWeather()
     }
 
     fun refreshData() {
         getWeather()
+    }
+
+    private fun getWeather() {
+        viewModelScope.launch {
+            _networkState.value = NetworkState.LOADING
+            try {
+                weatherRepository.getWeather()
+                _networkState.value = NetworkState.FINISH
+            } catch (e: IOException) {
+                Timber.tag("TAG_TAG").e(e)
+                _networkState.value = NetworkState.ERROR
+            }
+        }
     }
 
     override fun onCleared() {

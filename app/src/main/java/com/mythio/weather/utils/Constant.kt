@@ -7,6 +7,12 @@ enum class Unit {
     IMPERIAL
 }
 
+enum class NetworkState {
+    FINISH,
+    LOADING,
+    ERROR
+}
+
 const val BASE_URL = "http://api.apixu.com/v1/"
 
 fun code_condition(code: Int): String {

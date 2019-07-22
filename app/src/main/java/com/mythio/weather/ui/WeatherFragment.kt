@@ -1,21 +1,22 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mythio.weather.R
-import com.mythio.weather.databinding.WeatherFragmentBinding
+import com.mythio.weather.databinding.FragmentWeatherBinding
+import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.Unit
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
-import kotlinx.android.synthetic.main.weather_fragment.*
+import kotlinx.android.synthetic.main.fragment_weather.*
 
 class WeatherFragment : Fragment() {
 
@@ -31,9 +32,9 @@ class WeatherFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: WeatherFragmentBinding = DataBindingUtil.inflate(
+        val binding: FragmentWeatherBinding = DataBindingUtil.inflate(
             inflater,
-            R.layout.weather_fragment,
+            R.layout.fragment_weather,
             container,
             false
         )
@@ -47,10 +48,6 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getValuesOfUnit(Unit.METRIC)
-        viewModel.str.observe(this, Observer {
-
-            Log.d("TAG_TAG", it)
-        })
 
         ib_search.setOnClickListener {
 
@@ -65,9 +62,19 @@ class WeatherFragment : Fragment() {
             }
         })
 
-        viewModel.isRefreshed.observe(this, Observer {
+        viewModel.networkState.observe(this, Observer { networkState ->
+            when (networkState) {
+                NetworkState.FINISH -> {
+                    refreshLayout.finishRefresh(2)
+                }
+                NetworkState.ERROR -> {
+                    Toast.makeText(context, "Can't connect to API", Toast.LENGTH_SHORT).show()
+                    refreshLayout.finishRefresh(2)
+                }
+                else -> {
 
-            refreshLayout.finishRefresh(2)
+                }
+            }
         })
     }
 }
