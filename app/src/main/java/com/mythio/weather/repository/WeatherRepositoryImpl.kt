@@ -1,8 +1,9 @@
 package com.mythio.weather.repository
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.mythio.weather.db.WeatherDatabase
+import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.network.WeatherApi
@@ -11,50 +12,52 @@ import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class WeatherRepositoryImpl(
-    private val database: WeatherDatabase
-) : Repository {
+class WeatherRepositoryImpl private constructor(
+    private val weatherDao: WeatherDao
+) {
 
-    override fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
+    val searchResponse = MutableLiveData<List<Location>>()
+
+    fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
         return Transformations
-            .map(database.weatherDao.getCurrentWeatherImperial()) { weather ->
+            .map(weatherDao.getCurrentWeatherImperial()) { weather ->
                 weather?.convert()
             }
     }
 
-    override fun getCurrentWeatherMetric(): LiveData<CurrentWeather> {
+    fun getCurrentWeatherMetric(): LiveData<CurrentWeather> {
         return Transformations
-            .map(database.weatherDao.getCurrentWeatherMetric()) { weather ->
+            .map(weatherDao.getCurrentWeatherMetric()) { weather ->
                 weather?.convert()
             }
     }
 
-    override fun getForecastWeatherImperial(): LiveData<List<ForecastWeather>> {
+    fun getForecastWeatherImperial(): LiveData<List<ForecastWeather>> {
         return Transformations
-            .map(database.weatherDao.getForecastImperial()) { weatherList ->
+            .map(weatherDao.getForecastImperial()) { weatherList ->
                 weatherList.map {
                     it.convert()
                 }
             }
     }
 
-    override fun getForecastWeatherMetric(): LiveData<List<ForecastWeather>> {
+    fun getForecastWeatherMetric(): LiveData<List<ForecastWeather>> {
         return Transformations
-            .map(database.weatherDao.getForecastMetric()) { weatherList ->
+            .map(weatherDao.getForecastMetric()) { weatherList ->
                 weatherList.map {
                     it.convert()
                 }
             }
     }
 
-    override suspend fun searchLocation(location: String): List<Location> {
-        return WeatherApi
+    suspend fun searchLocation(location: String) {
+        searchResponse.value = WeatherApi
             .retrofitService
             .getSearchLocationAsync("70ef3b7f24484a918b782502191207", location)
             .body()!!
     }
 
-    override suspend fun getWeather() {
+    suspend fun getWeather() {
         withContext(Dispatchers.IO) {
             val response = WeatherApi
                 .retrofitService
@@ -62,9 +65,20 @@ class WeatherRepositoryImpl(
             if (response.isSuccessful) {
                 val data = response.body()!!
                 data.current.location = data.location
-                database.weatherDao.upsertCurrentWeather(data.current)
-                database.weatherDao.upsertForecastWeather(data.forecast.forecastday)
+                weatherDao.upsertCurrentWeather(data.current)
+                weatherDao.upsertForecastWeather(data.forecast.forecastday)
             }
         }
+    }
+
+    companion object {
+
+        @Volatile
+        private var instance: WeatherRepositoryImpl? = null
+
+        fun getInstance(dao: WeatherDao) =
+            instance ?: synchronized(this) {
+                instance ?: WeatherRepositoryImpl(dao).also { instance = it }
+            }
     }
 }

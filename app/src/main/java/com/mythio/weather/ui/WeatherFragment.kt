@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.mythio.weather.R
 import com.mythio.weather.databinding.FragmentWeatherBinding
+import com.mythio.weather.utils.InjectorUtils
 import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.Unit
 import com.scwang.smartrefresh.layout.api.RefreshLayout
@@ -20,12 +21,8 @@ import kotlinx.android.synthetic.main.fragment_weather.*
 
 class WeatherFragment : Fragment() {
 
-    private val viewModel: WeatherViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
-        }
-        ViewModelProviders.of(this, WeatherViewModel.Factory(activity.application))
-            .get(WeatherViewModel::class.java)
+    private val viewModel: WeatherViewModel by viewModels {
+        InjectorUtils.provideWeatherViewModelFactory(requireContext())
     }
 
     override fun onCreateView(
@@ -38,9 +35,9 @@ class WeatherFragment : Fragment() {
             container,
             false
         )
-
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
         return binding.root
     }
 
