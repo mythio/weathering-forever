@@ -12,7 +12,7 @@ import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class WeatherRepositoryImpl private constructor(
+class WeatherRepository private constructor(
     private val weatherDao: WeatherDao
 ) {
 
@@ -74,11 +74,11 @@ class WeatherRepositoryImpl private constructor(
     companion object {
 
         @Volatile
-        private var instance: WeatherRepositoryImpl? = null
+        private var instance: WeatherRepository? = null
 
         fun getInstance(dao: WeatherDao) =
             instance ?: synchronized(this) {
-                instance ?: WeatherRepositoryImpl(dao).also { instance = it }
+                instance ?: WeatherRepository(dao).also { instance = it }
             }
     }
 }

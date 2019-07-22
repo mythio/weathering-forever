@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.repository.WeatherRepositoryImpl
+import com.mythio.weather.repository.WeatherRepository
 import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.Unit
 import kotlinx.coroutines.CoroutineScope
@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 class WeatherViewModel(
-    private val weatherRepository: WeatherRepositoryImpl
+    private val weatherRepository: WeatherRepository
 ) : ViewModel() {
 
     private val viewModelJob = SupervisorJob()
