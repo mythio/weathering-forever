@@ -11,8 +11,8 @@ fun CurrentImperial.convert(): CurrentWeather {
     return CurrentWeather(
         unit = Unit.IMPERIAL,
         temperature = temperature,
-        conditionText = code_condition(conditionCode),
-        conditionIconRes = code_icon_res(conditionCode),
+        conditionText = codeCondition(conditionCode),
+        conditionIconRes = codeIconRes(conditionCode),
         windSpeed = windSpeed,
         windDirection = windDirection,
         humidity = humidity,
@@ -26,8 +26,8 @@ fun CurrentMetric.convert(): CurrentWeather {
     return CurrentWeather(
         unit = Unit.METRIC,
         temperature = temperature,
-        conditionText = code_condition(conditionCode),
-        conditionIconRes = code_icon_res(conditionCode),
+        conditionText = codeCondition(conditionCode),
+        conditionIconRes = codeIconRes(conditionCode),
         windSpeed = windSpeed,
         windDirection = windDirection,
         humidity = humidity,
@@ -41,7 +41,7 @@ fun ForecastImperial.convert(): ForecastWeather {
     return ForecastWeather(
         unit = Unit.IMPERIAL,
         temperature = temperature,
-        conditionIconRes = code_icon_res(conditionCode)
+        conditionIconRes = codeIconRes(conditionCode)
     )
 }
 
@@ -49,6 +49,6 @@ fun ForecastMetric.convert(): ForecastWeather {
     return ForecastWeather(
         unit = Unit.METRIC,
         temperature = temperature,
-        conditionIconRes = code_icon_res(conditionCode)
+        conditionIconRes = codeIconRes(conditionCode)
     )
 }

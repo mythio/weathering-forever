@@ -28,7 +28,9 @@ class WeatherViewModel(
     val networkState: LiveData<NetworkState>
         get() = _networkState
 
-    fun getValuesOfUnit(unit: Unit) {
+    fun getData(location: String, unit: Unit) {
+        getWeather(location)
+
         when (unit) {
             Unit.IMPERIAL -> {
                 currentWeather = repository.getCurrentWeatherImperial()
@@ -39,20 +41,22 @@ class WeatherViewModel(
                 forecastWeather = repository.getForecastWeatherMetric()
             }
         }
-
-        getWeather()
     }
 
-    fun refreshData() {
-        getWeather()
+    fun refreshData(location: String) {
+        getWeather(location)
     }
 
-    private fun getWeather() {
+    fun updateLocation(location: String) {
+        getWeather(location)
+    }
+
+    private fun getWeather(location: String) {
 
         viewModelScope.launch {
             _networkState.value = NetworkState.LOADING
             try {
-                repository.getWeather()
+                repository.getWeather(location)
                 _networkState.value = NetworkState.FINISH
             } catch (e: IOException) {
                 _networkState.value = NetworkState.ERROR

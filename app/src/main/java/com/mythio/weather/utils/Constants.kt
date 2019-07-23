@@ -1,6 +1,12 @@
 package com.mythio.weather.utils
 
+import com.mythio.weather.BuildConfig
 import com.mythio.weather.R
+
+const val BASE_URL = "http://api.apixu.com/v1/"
+const val SHARED_PREF_NAME = BuildConfig.APPLICATION_ID + ".PREF"
+const val SHARED_PREF_KEY_LOCATION = BuildConfig.APPLICATION_ID + ".LOCATION"
+const val DEFAULT_LOCATION = "los-angeles-california-united-states-of-america"
 
 enum class Unit {
     METRIC,
@@ -13,9 +19,7 @@ enum class NetworkState {
     ERROR
 }
 
-const val BASE_URL = "http://api.apixu.com/v1/"
-
-fun code_condition(code: Int): String {
+fun codeCondition(code: Int): String {
     return when (code) {
         1273, 1276, 1204, 1207, 1135, 1147, 1069, 1030, 1003, 1006, 1009 ->
             "Cloudy"
@@ -30,7 +34,7 @@ fun code_condition(code: Int): String {
     }
 }
 
-fun code_icon_res(code: Int): Int {
+fun codeIconRes(code: Int): Int {
     return when (code) {
         1273, 1276, 1204, 1207, 1135, 1147, 1069, 1030, 1003, 1006, 1009 ->
             R.drawable.ic_cloud
@@ -44,22 +48,3 @@ fun code_icon_res(code: Int): Int {
             R.drawable.ic_sun
     }
 }
-
-val DIR_TO_DEGREE: Map<String, Int> = hashMapOf(
-    "N" to 0,
-    "NNE" to 23,
-    "NE" to 45,
-    "NEN" to 68,
-    "E" to 90,
-    "EES" to 113,
-    "ES" to 135,
-    "ESE" to 158,
-    "S" to 180,
-    "SSW" to 203,
-    "SW" to 225,
-    "SWS" to 248,
-    "W" to 270,
-    "WWN" to 293,
-    "WN" to 313,
-    "WNW" to 336
-)

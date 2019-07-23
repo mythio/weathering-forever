@@ -58,11 +58,11 @@ class Repository private constructor(
         }
     }
 
-    suspend fun getWeather() {
+    suspend fun getWeather(location: String) {
         withContext(Dispatchers.IO) {
             val response = WeatherApi
                 .retrofitService
-                .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
+                .getWeatherAsync("70ef3b7f24484a918b782502191207", location, 7)
             if (response.isSuccessful) {
                 val data = response.body()!!
                 data.current.locationResponse = data.locationResponse
