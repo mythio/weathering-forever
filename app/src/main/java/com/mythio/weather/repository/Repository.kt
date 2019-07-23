@@ -7,16 +7,16 @@ import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.network.WeatherApi
-import com.mythio.weather.network.response.Location
+import com.mythio.weather.network.response.LocationResponse
 import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class WeatherRepository private constructor(
+class Repository private constructor(
     private val weatherDao: WeatherDao
 ) {
 
-    val searchResponse = MutableLiveData<List<Location>>()
+    val searchResponse = MutableLiveData<List<LocationResponse>>()
 
     fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
         return Transformations
@@ -51,10 +51,11 @@ class WeatherRepository private constructor(
     }
 
     suspend fun searchLocation(location: String) {
-        searchResponse.value = WeatherApi
-            .retrofitService
-            .getSearchLocationAsync("70ef3b7f24484a918b782502191207", location)
-            .body()!!
+        withContext(Dispatchers.Main) {
+            searchResponse.value = WeatherApi
+                .retrofitService
+                .getSearchLocationAsync("70ef3b7f24484a918b782502191207", location).body()
+        }
     }
 
     suspend fun getWeather() {
@@ -64,7 +65,7 @@ class WeatherRepository private constructor(
                 .getWeatherAsync("70ef3b7f24484a918b782502191207", "panaji", 7)
             if (response.isSuccessful) {
                 val data = response.body()!!
-                data.current.location = data.location
+                data.current.locationResponse = data.locationResponse
                 weatherDao.upsertCurrentWeather(data.current)
                 weatherDao.upsertForecastWeather(data.forecast.forecastday)
             }
@@ -74,11 +75,11 @@ class WeatherRepository private constructor(
     companion object {
 
         @Volatile
-        private var instance: WeatherRepository? = null
+        private var instance: Repository? = null
 
         fun getInstance(dao: WeatherDao) =
             instance ?: synchronized(this) {
-                instance ?: WeatherRepository(dao).also { instance = it }
+                instance ?: Repository(dao).also { instance = it }
             }
     }
 }

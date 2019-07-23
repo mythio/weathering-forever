@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.recyclerview.widget.RecyclerView
+import com.mythio.weather.adapter.SearchLocationAdapter
+import com.mythio.weather.network.response.LocationResponse
 
 object BindingAdapter {
 
@@ -54,9 +57,9 @@ object BindingAdapter {
 
     @InverseBindingAdapter(attribute = "searchQuery")
     @JvmStatic
-    fun searchBinding(ev: EditText): String {
+    fun searchBinding2(view: EditText): String {
 
-        return ev.text.toString()
+        return view.text.toString()
     }
 
     @BindingAdapter("searchQueryAttrChanged")
@@ -73,5 +76,12 @@ object BindingAdapter {
                 listener?.onChange()
             }
         })
+    }
+
+    @BindingAdapter("listData")
+    @JvmStatic
+    fun searchRecyclerViewBind(recyclerView: RecyclerView, data: List<LocationResponse>?) {
+        val adapter = recyclerView.adapter as SearchLocationAdapter
+        adapter.submitList(data ?: listOf())
     }
 }

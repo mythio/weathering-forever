@@ -1,32 +1,60 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.mythio.weather.R
+import com.mythio.weather.adapter.SearchLocationAdapter
+import com.mythio.weather.databinding.FragmentSearchBinding
+import com.mythio.weather.utils.InjectorUtils
 
 class SearchFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SearchFragment()
+    private val viewModel: SearchViewModel by viewModels {
+        InjectorUtils.provideSearchViewModelFactory(requireContext())
     }
-
-    private lateinit var viewModel: SearchViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val binding: FragmentSearchBinding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_search,
+            container,
+            false
+        )
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.searchViewModel = viewModel
+        binding.search.adapter = SearchLocationAdapter()
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
 
+        viewModel.string.observe(this, Observer {
+            viewModel.getSearchData(it)
+        })
+
+        viewModel.string.debounce(200).observe(this, Observer {
+            if (it == null) {
+                Log.d("TAG_TAG_TAG", "it is null")
+            }
+            if (it != null && it != "") {
+                viewModel.getSearchData(it)
+            }
+        })
+
+        viewModel.searchResults.observe(this, Observer {
+            Log.d("TAG_TAG_TAG", "changed")
+        })
+    }
 }

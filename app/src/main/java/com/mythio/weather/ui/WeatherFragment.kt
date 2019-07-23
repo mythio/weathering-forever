@@ -36,7 +36,7 @@ class WeatherFragment : Fragment() {
             false
         )
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
+        binding.weatherViewModel = viewModel
 
         return binding.root
     }
