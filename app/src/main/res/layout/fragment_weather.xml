@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="weatherViewModel"
             type="com.mythio.weather.ui.WeatherViewModel" />
     </data>
 
@@ -55,8 +55,8 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:temperature="@{viewModel.currentWeather.temperature}"
-                app:unit="@{viewModel.currentWeather.unit}"
+                app:temperature="@{weatherViewModel.currentWeather.temperature}"
+                app:unit="@{weatherViewModel.currentWeather.unit}"
                 tools:text="34\u00B0C" />
 
             <TextView
@@ -68,7 +68,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:padding="8dp"
-                android:text="@{viewModel.currentWeather.location}"
+                android:text="@{weatherViewModel.currentWeather.location}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -86,13 +86,13 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/iv_wind"
                 app:layout_constraintTop_toBottomOf="@id/tv_location"
-                app:resId="@{viewModel.currentWeather.conditionIconRes}" />
+                app:resId="@{weatherViewModel.currentWeather.conditionIconRes}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@{viewModel.currentWeather.conditionText}"
+                android:text="@{weatherViewModel.currentWeather.conditionText}"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="@+id/iv_condition"
                 app:layout_constraintStart_toStartOf="@+id/iv_condition"
@@ -121,8 +121,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/iv_wind"
                 app:layout_constraintStart_toStartOf="@+id/iv_wind"
                 app:layout_constraintTop_toBottomOf="@+id/iv_wind"
-                app:unit="@{viewModel.currentWeather.unit}"
-                app:windSpeed="@{viewModel.currentWeather.windSpeed}"
+                app:unit="@{weatherViewModel.currentWeather.unit}"
+                app:windSpeed="@{weatherViewModel.currentWeather.windSpeed}"
                 tools:text="14 km/h" />
 
             <ImageView
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/colorPrimary"
-                app:humidity="@{viewModel.currentWeather.humidity}"
+                app:humidity="@{weatherViewModel.currentWeather.humidity}"
                 app:layout_constraintEnd_toEndOf="@+id/iv_humidity"
                 app:layout_constraintStart_toStartOf="@+id/iv_humidity"
                 app:layout_constraintTop_toBottomOf="@+id/iv_humidity"
@@ -153,7 +153,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
-                app:forecastWeather="@{viewModel.forecastWeather[0]}"
+                app:forecastWeather="@{weatherViewModel.forecastWeather[0]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/forecast_2"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -165,7 +165,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
-                app:forecastWeather="@{viewModel.forecastWeather[1]}"
+                app:forecastWeather="@{weatherViewModel.forecastWeather[1]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/forecast_3"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -178,7 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
-                app:forecastWeather="@{viewModel.forecastWeather[2]}"
+                app:forecastWeather="@{weatherViewModel.forecastWeather[2]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/forecast_4"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -191,7 +191,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="56dp"
-                app:forecastWeather="@{viewModel.forecastWeather[3]}"
+                app:forecastWeather="@{weatherViewModel.forecastWeather[3]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
