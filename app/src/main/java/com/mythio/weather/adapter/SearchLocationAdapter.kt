@@ -1,5 +1,6 @@
 package com.mythio.weather.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mythio.weather.databinding.ItemSearchLocationBinding
 import com.mythio.weather.network.response.LocationResponse
 
-class SearchLocationAdapter :
-    ListAdapter<LocationResponse, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
+class SearchLocationAdapter(
+    private val onClickListener: OnClickListener
+) : ListAdapter<LocationResponse, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<LocationResponse>() {
         override fun areItemsTheSame(oldItem: LocationResponse, newItem: LocationResponse): Boolean {
-            return oldItem === newItem
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: LocationResponse, newItem: LocationResponse): Boolean {
@@ -36,6 +38,14 @@ class SearchLocationAdapter :
 
     override fun onBindViewHolder(holder: LocationResponseViewHolder, position: Int) {
         val location = getItem(position)
+        holder.itemView.setOnClickListener {
+            Log.d("TAG_TAG_TAG", "CLICK")
+            onClickListener.onClick(location.name)
+        }
         holder.bind(location)
+    }
+
+    class OnClickListener(val clickListener: (url: String) -> Unit) {
+        fun onClick(url: String) = clickListener(url)
     }
 }

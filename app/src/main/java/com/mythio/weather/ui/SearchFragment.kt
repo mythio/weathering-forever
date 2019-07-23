@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.FragmentSearchBinding
@@ -33,7 +34,10 @@ class SearchFragment : Fragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
         binding.searchViewModel = viewModel
-        binding.search.adapter = SearchLocationAdapter()
+        binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener {
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToWeatherFragment(it))
+            viewModel.clearData()
+        })
 
         return binding.root
     }
@@ -41,16 +45,15 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.string.observe(this, Observer {
+        var intSearch = 0
+        viewModel.string.debounce(200).observe(viewLifecycleOwner, Observer {
+            Log.d("TAG_TAG_TAG", "search term changed " + intSearch++)
             viewModel.getSearchData(it)
         })
 
-        viewModel.string.debounce(200).observe(this, Observer {
-            viewModel.getSearchData(it)
-        })
-
-        viewModel.searchResults.observe(this, Observer {
-            Log.d("TAG_TAG_TAG", "changed")
+        var intRes = 0
+        viewModel.searchResults.observe(viewLifecycleOwner, Observer {
+            Log.d("TAG_TAG_TAG", "data recieved " + intRes++)
         })
     }
 }

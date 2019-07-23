@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class LocationResponse(
 
     @Json(name = "name")
-    val name: String?,
+    val name: String,
 
     @Json(name = "region")
     val region: String
