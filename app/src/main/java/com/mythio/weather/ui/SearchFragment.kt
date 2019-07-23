@@ -13,6 +13,7 @@ import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.FragmentSearchBinding
 import com.mythio.weather.utils.InjectorUtils
+import com.mythio.weather.utils.debounce
 
 class SearchFragment : Fragment() {
 
@@ -45,12 +46,7 @@ class SearchFragment : Fragment() {
         })
 
         viewModel.string.debounce(200).observe(this, Observer {
-            if (it == null) {
-                Log.d("TAG_TAG_TAG", "it is null")
-            }
-            if (it != null && it != "") {
-                viewModel.getSearchData(it)
-            }
+            viewModel.getSearchData(it)
         })
 
         viewModel.searchResults.observe(this, Observer {
