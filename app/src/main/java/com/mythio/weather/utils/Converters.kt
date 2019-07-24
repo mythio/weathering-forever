@@ -6,6 +6,7 @@ import com.mythio.weather.model.entity.current.CurrentImperial
 import com.mythio.weather.model.entity.current.CurrentMetric
 import com.mythio.weather.model.entity.forecast.ForecastImperial
 import com.mythio.weather.model.entity.forecast.ForecastMetric
+import java.util.*
 
 fun CurrentImperial.convert(): CurrentWeather {
     return CurrentWeather(
@@ -41,7 +42,8 @@ fun ForecastImperial.convert(): ForecastWeather {
     return ForecastWeather(
         unit = Unit.IMPERIAL,
         temperature = temperature,
-        conditionIconRes = codeIconRes(conditionCode)
+        conditionIconRes = codeIconRes(conditionCode),
+        day = String.format(Locale.ENGLISH, "%tA", date * 1000L).substring(0, 3).toUpperCase()
     )
 }
 
@@ -49,6 +51,7 @@ fun ForecastMetric.convert(): ForecastWeather {
     return ForecastWeather(
         unit = Unit.METRIC,
         temperature = temperature,
-        conditionIconRes = codeIconRes(conditionCode)
+        conditionIconRes = codeIconRes(conditionCode),
+        day = String.format(Locale.ENGLISH, "%tA", date * 1000L).substring(0, 3).toUpperCase()
     )
 }

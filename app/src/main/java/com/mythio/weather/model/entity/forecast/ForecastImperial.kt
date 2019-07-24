@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 
 data class ForecastImperial(
 
+    @ColumnInfo(name = "dateEpoch")
+    val date: Long,
+
     @ColumnInfo(name = "day_avgtempF")
     override val temperature: Double,
 

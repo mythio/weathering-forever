@@ -62,12 +62,13 @@ class Repository private constructor(
         withContext(Dispatchers.IO) {
             val response = WeatherApi
                 .retrofitService
-                .getWeatherAsync("70ef3b7f24484a918b782502191207", location, 7)
+                .getWeatherAsync("70ef3b7f24484a918b782502191207", location, 5)
             if (response.isSuccessful) {
                 val data = response.body()!!
                 data.current.locationResponse = data.locationResponse
                 weatherDao.upsertCurrentWeather(data.current)
-                weatherDao.upsertForecastWeather(data.forecast.forecastday)
+                weatherDao.clearForecast()
+                weatherDao.upsertForecastWeather(data.forecast.forecastday.subList(1, 5))
             }
         }
     }

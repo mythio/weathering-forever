@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.mythio.weather.R
 import com.mythio.weather.databinding.FragmentWeatherBinding
 import com.mythio.weather.utils.*
@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_weather.*
 class WeatherFragment : Fragment() {
 
     private val viewModel: WeatherViewModel by viewModels {
-
         InjectorUtils.provideWeatherViewModelFactory(requireContext())
     }
 
@@ -53,44 +52,46 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var location: String = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
-
         if (arguments != null) {
-
             val arguments = WeatherFragmentArgs.fromBundle(arguments!!)
             pref.edit().putString(SHARED_PREF_KEY_LOCATION, arguments.locationUrl).apply()
             location = arguments.locationUrl!!
             viewModel.updateLocation(location)
         }
 
-        viewModel.getData(location, Unit.METRIC)
-
         ib_search.setOnClickListener {
-
             findNavController().navigate(WeatherFragmentDirections.actionWeatherFragmentToSearchFragment())
         }
 
         refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
-
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 super.onRefresh(refreshLayout)
                 viewModel.refreshData(location)
             }
         })
 
-        viewModel.networkState.observe(this, Observer { networkState ->
+        viewModel.getData(location, Unit.METRIC)
 
+        viewModel.networkState.observe(viewLifecycleOwner, Observer { networkState ->
             when (networkState) {
                 NetworkState.FINISH -> {
-                    refreshLayout.finishRefresh(200)
+                    refreshLayout.finishRefresh(400)
                 }
                 NetworkState.ERROR -> {
-                    Toast.makeText(context, "Can't connect to API", Toast.LENGTH_SHORT).show()
-                    refreshLayout.finishRefresh(200)
+                    showSnackBar()
+                    refreshLayout.finishRefresh(400)
                 }
                 else -> {
-
                 }
             }
         })
+    }
+
+    private fun showSnackBar() {
+        Snackbar
+            .make(view!!, "Can't connect", Snackbar.LENGTH_LONG)
+            .setAction("RETRY") {
+                refreshLayout.autoRefresh()
+            }.show()
     }
 }

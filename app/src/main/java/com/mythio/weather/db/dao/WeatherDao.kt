@@ -32,4 +32,7 @@ interface WeatherDao {
 
     @Query("select * from forecast_weather")
     fun getForecastImperial(): LiveData<List<ForecastImperial>>
+
+    @Query("delete from forecast_weather")
+    fun clearForecast()
 }

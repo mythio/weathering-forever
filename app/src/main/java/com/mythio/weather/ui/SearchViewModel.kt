@@ -21,7 +21,6 @@ class SearchViewModel(
         get() = _searchResults
 
     fun getSearchData(location: String) {
-
         viewModelScope.launch {
             repository.searchLocation(location)
         }

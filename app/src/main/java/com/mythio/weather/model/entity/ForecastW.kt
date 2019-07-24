@@ -15,7 +15,7 @@ data class ForecastW(
     var date: String,
 
     @Json(name = "date_epoch")
-    var dateEpoch: Int,
+    var dateEpoch: Long,
 
     @Json(name = "day")
     @Embedded(prefix = "day_")

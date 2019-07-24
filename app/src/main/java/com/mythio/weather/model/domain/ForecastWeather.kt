@@ -6,5 +6,6 @@ class ForecastWeather(
 
     val unit: Unit,
     val temperature: Double,
-    val conditionIconRes: Int
+    val conditionIconRes: Int,
+    val day: String
 )

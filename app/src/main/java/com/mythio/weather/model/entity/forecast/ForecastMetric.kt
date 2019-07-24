@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 
 data class ForecastMetric(
 
+    @ColumnInfo(name = "dateEpoch")
+    val date: Long,
+
     @ColumnInfo(name = "day_avgtempC")
     override val temperature: Double,
 
