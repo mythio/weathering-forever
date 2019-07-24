@@ -1,7 +1,6 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.FragmentSearchBinding
 import com.mythio.weather.utils.InjectorUtils
-import com.mythio.weather.utils.debounce
 
 class SearchFragment : Fragment() {
 
@@ -45,15 +43,8 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var intSearch = 0
-        viewModel.string.debounce(200).observe(viewLifecycleOwner, Observer {
-            Log.d("TAG_TAG_TAG", "search term changed " + intSearch++)
+        viewModel.string.observe(viewLifecycleOwner, Observer {
             viewModel.getSearchData(it)
-        })
-
-        var intRes = 0
-        viewModel.searchResults.observe(viewLifecycleOwner, Observer {
-            Log.d("TAG_TAG_TAG", "data recieved " + intRes++)
         })
     }
 }

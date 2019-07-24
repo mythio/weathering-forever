@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.network.response.LocationResponse
 import com.mythio.weather.repository.Repository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class SearchViewModel(
     private val repository: Repository
@@ -24,6 +21,7 @@ class SearchViewModel(
         get() = _searchResults
 
     fun getSearchData(location: String) {
+
         viewModelScope.launch {
             repository.searchLocation(location)
         }
