@@ -2,8 +2,6 @@ package com.mythio.weather.utils
 
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
-import android.view.animation.AnimationUtils
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +9,6 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
-import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.network.response.LocationResponse
 

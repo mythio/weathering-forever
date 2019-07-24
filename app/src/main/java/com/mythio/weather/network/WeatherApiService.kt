@@ -3,8 +3,6 @@ package com.mythio.weather.network
 import com.mythio.weather.network.response.LocationResponse
 import com.mythio.weather.network.response.WeatherResponse
 import com.mythio.weather.utils.BASE_URL
-import io.reactivex.Observable
-import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
