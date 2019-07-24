@@ -44,7 +44,7 @@ class SearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel.string.observe(viewLifecycleOwner, Observer {
+        viewModel.location.observe(viewLifecycleOwner, Observer {
             viewModel.getSearchData(it)
         })
     }
