@@ -1,4 +1,4 @@
-package com.mythio.weather.ui
+package com.mythio.weather.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -13,6 +13,7 @@ import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.FragmentSearchBinding
 import com.mythio.weather.utils.InjectorUtils
+import com.mythio.weather.viewmodels.SearchViewModel
 
 class SearchFragment : Fragment() {
 
@@ -32,8 +33,8 @@ class SearchFragment : Fragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
         binding.searchViewModel = viewModel
-        binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener {
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToWeatherFragment(it))
+        binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener { location ->
+            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToWeatherFragment(location))
             viewModel.clearData()
         })
 

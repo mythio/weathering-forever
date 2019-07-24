@@ -1,11 +1,14 @@
-package com.mythio.weather.ui
+package com.mythio.weather.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.network.response.LocationResponse
 import com.mythio.weather.repository.Repository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val repository: Repository
@@ -14,7 +17,7 @@ class SearchViewModel(
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    val string = MutableLiveData<String>()
+    val location = MutableLiveData<String>()
 
     private val _searchResults = repository.searchResponse
     val searchResults: LiveData<List<LocationResponse>>
@@ -28,7 +31,7 @@ class SearchViewModel(
 
     fun clearData() {
         _searchResults.value = emptyList()
-        string.value = emptySequence<String>().toString()
+        location.value = emptySequence<String>().toString()
     }
 
     override fun onCleared() {

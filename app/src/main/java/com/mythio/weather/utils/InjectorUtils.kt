@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mythio.weather.db.WeatherDatabase
 import com.mythio.weather.repository.Repository
-import com.mythio.weather.ui.SearchViewModel
-import com.mythio.weather.ui.WeatherViewModel
+import com.mythio.weather.viewmodels.SearchViewModel
+import com.mythio.weather.viewmodels.WeatherViewModel
 
 object InjectorUtils {
 
@@ -31,7 +31,9 @@ class WeatherViewModelFactory(
     private val repository: Repository
 ) : ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel> create(modelClass: Class<T>) = WeatherViewModel(repository) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>) = WeatherViewModel(
+        repository
+    ) as T
 }
 
 class SearchViewModelFactory(

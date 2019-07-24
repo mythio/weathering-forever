@@ -16,6 +16,7 @@ import com.mythio.weather.R
 import com.mythio.weather.databinding.FragmentWeatherBinding
 import com.mythio.weather.utils.*
 import com.mythio.weather.utils.Unit
+import com.mythio.weather.viewmodels.WeatherViewModel
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import kotlinx.android.synthetic.main.fragment_weather.*

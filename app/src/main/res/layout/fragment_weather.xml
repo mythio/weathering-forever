@@ -6,7 +6,7 @@
 
         <variable
             name="weatherViewModel"
-            type="com.mythio.weather.ui.WeatherViewModel" />
+            type="com.mythio.weather.viewmodels.WeatherViewModel" />
     </data>
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout

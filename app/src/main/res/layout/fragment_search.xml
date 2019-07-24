@@ -7,7 +7,7 @@
 
         <variable
             name="searchViewModel"
-            type="com.mythio.weather.ui.SearchViewModel" />
+            type="com.mythio.weather.viewmodels.SearchViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,13 +43,13 @@
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@null"
                     android:inputType="textFilter"
                     android:maxLines="1"
                     android:minHeight="36dp"
-                    app:searchQuery="@={searchViewModel.string}" />
+                    app:searchQuery="@={searchViewModel.location}" />
 
             </LinearLayout>
 
