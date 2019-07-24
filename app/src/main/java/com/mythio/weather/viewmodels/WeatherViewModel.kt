@@ -7,7 +7,8 @@ import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.repository.Repository
 import com.mythio.weather.utils.NetworkState
-import com.mythio.weather.utils.Unit
+import com.mythio.weather.utils.UNIT_IMPERIAL
+import com.mythio.weather.utils.UNIT_METRIC
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -28,15 +29,15 @@ class WeatherViewModel(
     val networkState: LiveData<NetworkState>
         get() = _networkState
 
-    fun getData(location: String, unit: Unit) {
+    fun getData(location: String, unit: Int) {
         getWeather(location)
 
         when (unit) {
-            Unit.IMPERIAL -> {
+            UNIT_IMPERIAL -> {
                 currentWeather = repository.getCurrentWeatherImperial()
                 forecastWeather = repository.getForecastWeatherImperial()
             }
-            Unit.METRIC -> {
+            UNIT_METRIC -> {
                 currentWeather = repository.getCurrentWeatherMetric()
                 forecastWeather = repository.getForecastWeatherMetric()
             }

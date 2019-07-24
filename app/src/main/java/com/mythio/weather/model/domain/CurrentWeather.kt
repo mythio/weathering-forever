@@ -1,10 +1,8 @@
 package com.mythio.weather.model.domain
 
-import com.mythio.weather.utils.Unit
-
 data class CurrentWeather(
 
-    val unit: Unit,
+    val unit: Int,
     val temperature: Double,
     val conditionText: String,
     val conditionIconRes: Int,

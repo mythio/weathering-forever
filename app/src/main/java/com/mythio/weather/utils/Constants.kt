@@ -4,14 +4,15 @@ import com.mythio.weather.BuildConfig
 import com.mythio.weather.R
 
 const val BASE_URL = "http://api.apixu.com/v1/"
+
 const val SHARED_PREF_NAME = BuildConfig.APPLICATION_ID + ".PREF"
 const val SHARED_PREF_KEY_LOCATION = BuildConfig.APPLICATION_ID + ".LOCATION"
-const val DEFAULT_LOCATION = "los-angeles-california-united-states-of-america"
+const val SHARED_PREF_KEY_UNIT = BuildConfig.APPLICATION_ID + ".UNIT"
 
-enum class Unit {
-    METRIC,
-    IMPERIAL
-}
+const val DEFAULT_LOCATION = "los-angeles-california-united-states-of-america"
+const val DEFAULT_UNIT = 0
+const val UNIT_METRIC = 0
+const val UNIT_IMPERIAL = 1
 
 enum class NetworkState {
     FINISH,

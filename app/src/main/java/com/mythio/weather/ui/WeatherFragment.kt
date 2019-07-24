@@ -15,7 +15,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.mythio.weather.R
 import com.mythio.weather.databinding.FragmentWeatherBinding
 import com.mythio.weather.utils.*
-import com.mythio.weather.utils.Unit
 import com.mythio.weather.viewmodels.WeatherViewModel
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
@@ -53,6 +52,7 @@ class WeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var location: String = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
+        val unit: Int = pref.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)
         if (arguments != null) {
             val arguments = WeatherFragmentArgs.fromBundle(arguments!!)
             pref.edit().putString(SHARED_PREF_KEY_LOCATION, arguments.locationUrl).apply()
@@ -71,7 +71,7 @@ class WeatherFragment : Fragment() {
             }
         })
 
-        viewModel.getData(location, Unit.METRIC)
+        viewModel.getData(location, unit)
 
         viewModel.networkState.observe(viewLifecycleOwner, Observer { networkState ->
             when (networkState) {

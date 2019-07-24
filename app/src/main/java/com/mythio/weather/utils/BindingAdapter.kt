@@ -22,20 +22,20 @@ object BindingAdapter {
 
     @BindingAdapter(value = ["temperature", "unit"], requireAll = true)
     @JvmStatic
-    fun temperatureTextBinding(txt: TextView, temperature: Double?, unit: Unit?) {
+    fun temperatureTextBinding(txt: TextView, temperature: Double?, unit: Int?) {
         txt.text = when (unit) {
-            Unit.METRIC -> "$temperature\u00B0C"
-            Unit.IMPERIAL -> "$temperature\u00B0F"
+            UNIT_METRIC -> "$temperature\u00B0C"
+            UNIT_IMPERIAL -> "$temperature\u00B0F"
             else -> return
         }
     }
 
     @BindingAdapter(value = ["windSpeed", "unit"], requireAll = true)
     @JvmStatic
-    fun windTextBinding(txt: TextView, windSpeed: Double?, unit: Unit?) {
+    fun windTextBinding(txt: TextView, windSpeed: Double?, unit: Int?) {
         txt.text = when (unit) {
-            Unit.METRIC -> "$windSpeed km/h"
-            Unit.IMPERIAL -> "$windSpeed mi/h"
+            UNIT_METRIC -> "$windSpeed km/h"
+            UNIT_IMPERIAL -> "$windSpeed mi/h"
             else -> return
         }
     }

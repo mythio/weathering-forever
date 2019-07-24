@@ -81,12 +81,12 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginTop="48dp"
-                android:src="@drawable/ic_sun"
                 android:tint="@color/colorPrimaryDark"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/iv_wind"
                 app:layout_constraintTop_toBottomOf="@id/tv_location"
-                app:resId="@{weatherViewModel.currentWeather.conditionIconRes}" />
+                app:resId="@{weatherViewModel.currentWeather.conditionIconRes}"
+                tools:src="@drawable/ic_sun" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -168,7 +168,6 @@
                 app:forecastWeather="@{weatherViewModel.forecastWeather[1]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/forecast_3"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/forecast_1" />
 
@@ -181,7 +180,6 @@
                 app:forecastWeather="@{weatherViewModel.forecastWeather[2]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/forecast_4"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/forecast_2" />
 
@@ -194,10 +192,11 @@
                 app:forecastWeather="@{weatherViewModel.forecastWeather[3]}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@+id/forecast_3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
 </layout>

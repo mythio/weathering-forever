@@ -1,10 +1,8 @@
 package com.mythio.weather.model.domain
 
-import com.mythio.weather.utils.Unit
-
 class ForecastWeather(
 
-    val unit: Unit,
+    val unit: Int,
     val temperature: Double,
     val conditionIconRes: Int,
     val day: String
