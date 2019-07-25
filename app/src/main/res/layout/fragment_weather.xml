@@ -17,7 +17,7 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlAccentColor="@color/colorPrimary"
+            app:srlAccentColor="@color/smartRefreshHeader"
             app:srlDrawableArrow="@drawable/ic_refresh"
             app:srlDrawableMarginRight="12dp"
             app:srlDrawableProgress="@drawable/ic_refresh"

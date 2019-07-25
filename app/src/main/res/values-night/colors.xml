@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#97bbd1</color>
+    <color name="colorPrimaryDark">#749fb8</color>
+    <color name="colorAccent">#f7444e</color>
+    <color name="statusBar">#121212</color>
+    <color name="smartRefreshHeader">#666666</color>
+    <color name="windowBg">#121212</color>
+</resources>

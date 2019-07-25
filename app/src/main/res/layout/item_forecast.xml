@@ -29,6 +29,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_sun"
+            android:tint="@color/colorPrimaryDark"
             app:resId="@{forecastWeather.conditionIconRes}" />
 
         <TextView
