@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.mythio.weather.model.entity.CurrentW
 import com.mythio.weather.model.entity.ForecastW
+import com.mythio.weather.model.entity.Location
 import com.mythio.weather.model.entity.current.CurrentImperial
 import com.mythio.weather.model.entity.current.CurrentMetric
 import com.mythio.weather.model.entity.forecast.ForecastImperial
@@ -16,10 +17,10 @@ import com.mythio.weather.model.entity.forecast.ForecastMetric
 interface WeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertCurrentWeather(w: CurrentW)
+    fun upsertCurrentWeather(weather: CurrentW)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun upsertForecastWeather(w: List<ForecastW>)
+    fun upsertForecastWeather(weather: List<ForecastW>)
 
     @Query("select * from current_weather where id = 0")
     fun getCurrentWeatherMetric(): LiveData<CurrentMetric>
@@ -35,4 +36,10 @@ interface WeatherDao {
 
     @Query("delete from forecast_weather")
     fun clearForecast()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertLocation(location: Location)
+
+    @Query("select * from location")
+    fun getLocation(): LiveData<List<Location>>
 }

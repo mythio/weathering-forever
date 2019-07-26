@@ -1,24 +1,23 @@
 package com.mythio.weather.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mythio.weather.databinding.ItemSearchLocationBinding
-import com.mythio.weather.network.response.LocationResponse
+import com.mythio.weather.model.entity.Location
 
 class SearchLocationAdapter(
     private val onClickListener: OnClickListener
-) : ListAdapter<LocationResponse, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
+) : ListAdapter<Location, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
 
-    companion object DiffCallback : DiffUtil.ItemCallback<LocationResponse>() {
-        override fun areItemsTheSame(oldItem: LocationResponse, newItem: LocationResponse): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Location>() {
+        override fun areItemsTheSame(oldItem: Location, newItem: Location): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: LocationResponse, newItem: LocationResponse): Boolean {
+        override fun areContentsTheSame(oldItem: Location, newItem: Location): Boolean {
             return oldItem.name == newItem.name &&
                     oldItem.region == newItem.region
         }
@@ -26,7 +25,7 @@ class SearchLocationAdapter(
 
     class LocationResponseViewHolder(private var binding: ItemSearchLocationBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(location: LocationResponse) {
+        fun bind(location: Location) {
             binding.searchResults = location
             binding.executePendingBindings()
         }
@@ -39,13 +38,12 @@ class SearchLocationAdapter(
     override fun onBindViewHolder(holder: LocationResponseViewHolder, position: Int) {
         val location = getItem(position)
         holder.itemView.setOnClickListener {
-            Log.d("TAG_TAG_TAG", "CLICK")
-            onClickListener.onClick(location.name)
+            onClickListener.onClick(location)
         }
         holder.bind(location)
     }
 
-    class OnClickListener(val clickListener: (url: String) -> Unit) {
-        fun onClick(url: String) = clickListener(url)
+    class OnClickListener(val clickListener: (url: Location) -> Unit) {
+        fun onClick(url: Location) = clickListener(url)
     }
 }

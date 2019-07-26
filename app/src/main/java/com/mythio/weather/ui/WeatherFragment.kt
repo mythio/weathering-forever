@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -76,11 +77,11 @@ class WeatherFragment : Fragment() {
         viewModel.networkState.observe(viewLifecycleOwner, Observer { networkState ->
             when (networkState) {
                 NetworkState.FINISH -> {
-                    refreshLayout.finishRefresh(400)
+                    refreshLayout.finishRefresh(600)
                 }
                 NetworkState.ERROR -> {
                     showSnackBar()
-                    refreshLayout.finishRefresh(400)
+                    refreshLayout.finishRefresh(600)
                 }
                 else -> {
                 }
@@ -91,8 +92,8 @@ class WeatherFragment : Fragment() {
     private fun showSnackBar() {
         Snackbar
             .make(view!!, "Can't connect", Snackbar.LENGTH_LONG)
-            .setAction("RETRY") {
-                refreshLayout.autoRefresh()
-            }.show()
+            .setActionTextColor(ContextCompat.getColor(context!!, R.color.colorAccent))
+            .setAction("RETRY") { refreshLayout.autoRefresh() }
+            .show()
     }
 }

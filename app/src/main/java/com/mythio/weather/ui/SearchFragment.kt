@@ -1,6 +1,7 @@
 package com.mythio.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.mythio.weather.R
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.FragmentSearchBinding
@@ -33,9 +33,11 @@ class SearchFragment : Fragment() {
         )
         binding.lifecycleOwner = viewLifecycleOwner
         binding.searchViewModel = viewModel
-        binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener { location ->
-            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToWeatherFragment(location))
-            viewModel.clearData()
+        binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener { locationR ->
+
+            viewModel.add(locationR)
+//            findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToWeatherFragment(location))
+//            viewModel.clearData()
         })
 
         return binding.root

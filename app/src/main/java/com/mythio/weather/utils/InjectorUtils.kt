@@ -3,7 +3,7 @@ package com.mythio.weather.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mythio.weather.db.WeatherDatabase
+import com.mythio.weather.db.AppDatabase
 import com.mythio.weather.repository.Repository
 import com.mythio.weather.viewmodels.SearchViewModel
 import com.mythio.weather.viewmodels.WeatherViewModel
@@ -12,7 +12,7 @@ object InjectorUtils {
 
     private fun getRepository(context: Context): Repository {
         return Repository.getInstance(
-            WeatherDatabase.getInstance(context.applicationContext).weatherDao()
+            AppDatabase.getInstance(context.applicationContext).weatherDao()
         )
     }
 
@@ -31,9 +31,7 @@ class WeatherViewModelFactory(
     private val repository: Repository
 ) : ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel> create(modelClass: Class<T>) = WeatherViewModel(
-        repository
-    ) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>) = WeatherViewModel(repository) as T
 }
 
 class SearchViewModelFactory(

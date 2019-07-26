@@ -7,31 +7,30 @@ import androidx.room.RoomDatabase
 import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.entity.CurrentW
 import com.mythio.weather.model.entity.ForecastW
+import com.mythio.weather.model.entity.Location
 
 @Database(
-    entities = [CurrentW::class, ForecastW::class],
+    entities = [CurrentW::class, ForecastW::class, Location::class],
     version = 1
 )
-abstract class WeatherDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
 
     companion object {
 
         @Volatile
-        private var instance: WeatherDatabase? = null
+        private var instance: AppDatabase? = null
 
-        fun getInstance(context: Context): WeatherDatabase {
+        fun getInstance(context: Context): AppDatabase {
             return instance ?: synchronized(this) {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
 
-        private fun buildDatabase(context: Context): WeatherDatabase {
+        private fun buildDatabase(context: Context): AppDatabase {
             return Room
-                .databaseBuilder(
-                    context, WeatherDatabase::class.java, "weather"
-                )
+                .databaseBuilder(context, AppDatabase::class.java, "weather")
                 .build()
         }
     }

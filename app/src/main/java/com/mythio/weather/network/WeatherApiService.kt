@@ -1,6 +1,6 @@
 package com.mythio.weather.network
 
-import com.mythio.weather.network.response.LocationResponse
+import com.mythio.weather.model.entity.Location
 import com.mythio.weather.network.response.WeatherResponse
 import com.mythio.weather.utils.BASE_URL
 import retrofit2.Response
@@ -28,7 +28,7 @@ interface WeatherApiService {
     suspend fun getSearchLocationAsync(
         @Query("key") apiKey: String,
         @Query("q") location: String
-    ): Response<List<LocationResponse>>
+    ): Response<List<Location>>
 }
 
 object WeatherApi {

@@ -4,6 +4,7 @@ import com.mythio.weather.BuildConfig
 import com.mythio.weather.R
 
 const val BASE_URL = "http://api.apixu.com/v1/"
+const val API_KEY = "70ef3b7f24484a918b782502191207"
 
 const val SHARED_PREF_NAME = BuildConfig.APPLICATION_ID + ".PREF"
 const val SHARED_PREF_KEY_LOCATION = BuildConfig.APPLICATION_ID + ".LOCATION"

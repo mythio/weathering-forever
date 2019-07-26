@@ -1,10 +1,12 @@
-package com.mythio.weather.network.response
+package com.mythio.weather.model.entity
 
+import androidx.room.Entity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class LocationResponse(
+@Entity(tableName = "location", primaryKeys = ["name", "region"])
+data class Location(
 
     @Json(name = "name")
     val name: String,

@@ -6,7 +6,7 @@
 
         <variable
             name="searchResults"
-            type="com.mythio.weather.network.response.LocationResponse" />
+            type="com.mythio.weather.model.entity.Location" />
     </data>
 
     <LinearLayout

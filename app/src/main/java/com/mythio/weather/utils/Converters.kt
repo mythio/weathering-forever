@@ -19,7 +19,7 @@ fun CurrentImperial.convert(): CurrentWeather {
         humidity = humidity,
         feelsLike = feelsLikeTemperature,
         uvIndex = uvIndex,
-        location = locationResponse.name + ", " + locationResponse.region
+        location = location.name + ", " + location.region
     )
 }
 
@@ -34,7 +34,7 @@ fun CurrentMetric.convert(): CurrentWeather {
         humidity = humidity,
         feelsLike = feelsLikeTemperature,
         uvIndex = uvIndex,
-        location = locationResponse.name + ", " + locationResponse.region
+        location = location.name + ", " + location.region
     )
 }
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#316781</color>
-    <color name="colorPrimaryDark">#002c3e</color>
-    <color name="colorAccent">#ee1d31</color>
+    <color name="colorPrimary">#262626</color>
+    <color name="colorPrimaryDark">#555555</color>
+    <color name="colorAccent">#6600ff</color>
     <color name="statusBar">#ffffff</color>
-    <color name="smartRefreshHeader">#999999</color>
+    <color name="searchBarBg">#eeeeee</color>
+    <color name="smartRefreshHeader">#757575</color>
     <color name="windowBg">#ffffff</color>
 </resources>

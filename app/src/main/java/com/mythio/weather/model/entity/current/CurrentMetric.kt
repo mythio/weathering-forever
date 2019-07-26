@@ -2,7 +2,7 @@ package com.mythio.weather.model.entity.current
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
-import com.mythio.weather.network.response.LocationResponse
+import com.mythio.weather.model.entity.Location
 
 data class CurrentMetric(
 
@@ -28,5 +28,5 @@ data class CurrentMetric(
     override val uvIndex: Double,
 
     @Embedded(prefix = "location_")
-    val locationResponse: LocationResponse
+    val location: Location
 ) : Current

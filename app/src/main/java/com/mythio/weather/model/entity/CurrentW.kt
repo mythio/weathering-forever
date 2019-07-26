@@ -3,7 +3,6 @@ package com.mythio.weather.model.entity
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.mythio.weather.network.response.LocationResponse
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -86,5 +85,5 @@ data class CurrentW(
         get() = 0
 
     @Embedded(prefix = "location_")
-    var locationResponse: LocationResponse = LocationResponse("", "")
+    var location = Location("", "")
 }
