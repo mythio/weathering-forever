@@ -1,36 +1,29 @@
 package com.mythio.weather
 
 import android.app.Application
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_NO
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 
 class WeatherApplication : Application() {
 
-    private val applicationScope = CoroutineScope(Dispatchers.Default)
-
     override fun onCreate() {
         super.onCreate()
-        delayedInit()
+
     }
 
-    private fun delayedInit() {
-        applicationScope.launch {
-            Timber.plant(Timber.DebugTree())
-//            setupWorkManager()
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        val currentNightMode = newConfig?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
+        when (currentNightMode) {
+            UI_MODE_NIGHT_NO -> {
+                Log.d("TAG_TAG_TAG", "NIGHT_OFF")
+            } // Night mode is not active, we're using the light theme
+            UI_MODE_NIGHT_YES -> {
+                Log.d("TAG_TAG_TAG", "NIGHT_ON")
+            } // Night mode is active, we're using dark theme
         }
     }
-
-//    private fun setupWorkManager() {
-//
-//        val constraints = Constraints.Builder()
-//            .setRequiredNetworkType(NetworkType.UNMETERED)
-//            .setRequiresCharging(true)
-//            .setRequiresBatteryNotLow(true)
-//            .setRequiresDeviceIdle(true)
-//            .build()
-//    }
 }

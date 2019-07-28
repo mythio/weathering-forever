@@ -41,7 +41,7 @@ class SearchActivity : AppCompatActivity() {
                 finish()
             }
 
-            override fun delete(location: Location) {
+            override fun onClickDelete(location: Location) {
                 viewModel.delete(location)
             }
         })
@@ -56,16 +56,6 @@ class SearchActivity : AppCompatActivity() {
                 finish()
             }
         })
-
-        /*binding.search.adapter = SearchLocationAdapter(SearchLocationAdapter.OnClickListener { locationR ->
-
-            viewModel.add(locationR)
-            getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE).edit()
-                .putString(SHARED_PREF_KEY_LOCATION, locationR.name).apply()
-
-            setResult(Activity.RESULT_OK)
-            finish()
-        })*/
 
         ib_close.setOnClickListener {
             setResult(Activity.RESULT_CANCELED)

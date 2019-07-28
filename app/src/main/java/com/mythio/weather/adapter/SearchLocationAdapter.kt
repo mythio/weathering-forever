@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.mythio.weather.databinding.ItemSearchBinding
 import com.mythio.weather.model.entity.Location
 
 class SearchLocationAdapter(
     private val onClickListener: OnClickListener
-) : ListAdapter<Location, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
+) : ListAdapter<Location, DataBindingViewHolder<Location>>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Location>() {
         override fun areItemsTheSame(oldItem: Location, newItem: Location): Boolean {
@@ -23,19 +22,11 @@ class SearchLocationAdapter(
         }
     }
 
-    class LocationResponseViewHolder(private var binding: ItemSearchBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(location: Location) {
-            binding.searchResults = location
-            binding.executePendingBindings()
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<Location> {
+        return DataBindingViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationResponseViewHolder {
-        return LocationResponseViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)))
-    }
-
-    override fun onBindViewHolder(holder: LocationResponseViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: DataBindingViewHolder<Location>, position: Int) {
         val location = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(location)
