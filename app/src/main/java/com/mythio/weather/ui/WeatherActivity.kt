@@ -1,9 +1,11 @@
 package com.mythio.weather.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -25,29 +27,24 @@ class WeatherActivity : AppCompatActivity() {
     }
 
     private lateinit var pref: SharedPreferences
+    private lateinit var location: String
+    private var unit: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val binding: ActivityWeatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather)
 
-        pref = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-
         binding.lifecycleOwner = this
         binding.weatherViewModel = viewModel
 
-        var location: String = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
-        val unit: Int = pref.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)
+        pref = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
-//        if (arguments != null) {
-//            val arguments = WeatherFragmentArgs.fromBundle(arguments!!)
-//            pref.edit().putString(SHARED_PREF_KEY_LOCATION, arguments.locationUrl).apply()
-//            location = arguments.locationUrl!!
-//            viewModel.updateLocation(location)
-//        }
+        location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
+        unit = pref.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)
 
         ib_search.setOnClickListener {
-            startActivity(Intent(this, SearchActivity::class.java))
+            startActivityForResult(Intent(this, SearchActivity::class.java), 69)
         }
 
         refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
@@ -80,5 +77,15 @@ class WeatherActivity : AppCompatActivity() {
             .setActionTextColor(ContextCompat.getColor(this, R.color.colorAccent))
             .setAction("RETRY") { refreshLayout.autoRefresh() }
             .show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 69 && resultCode == Activity.RESULT_OK) {
+            location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
+            viewModel.getData(location, unit)
+        } else {
+            Log.d("TAG_TAG_TAG", "CANCELLED")
+        }
     }
 }

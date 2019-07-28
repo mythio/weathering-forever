@@ -21,6 +21,9 @@ data class CurrentMetric(
     @ColumnInfo(name = "humidity")
     override val humidity: Int,
 
+    @ColumnInfo(name = "precipMm")
+    val precipitation: Double,
+
     @ColumnInfo(name = "feelslikeC")
     override val feelsLikeTemperature: Double,
 

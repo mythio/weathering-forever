@@ -6,10 +6,12 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
+import com.mythio.weather.adapter.RecentLocationAdapter
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.model.entity.Location
 
@@ -80,18 +82,50 @@ object BindingAdapter {
 
     @BindingAdapter("listData")
     @JvmStatic
-    fun searchRecyclerViewBind(recyclerView: RecyclerView, data: List<Location>?) {
-        val adapter = recyclerView.adapter as SearchLocationAdapter
-        adapter.submitList(data ?: listOf())
-    }
-
-    @BindingAdapter("visibility")
-    @JvmStatic
-    fun funfun(textView: TextView, int: Boolean) {
-        if (int) {
-            textView.visibility = View.GONE
+    fun recyclerViewBind(recyclerView: RecyclerView, data: List<Location>?) {
+        if (recyclerView.adapter is SearchLocationAdapter) {
+            val adapter = recyclerView.adapter as SearchLocationAdapter
+            adapter.submitList(data ?: listOf())
         } else {
-            textView.visibility = View.VISIBLE
+            val adapter = recyclerView.adapter as RecentLocationAdapter
+            adapter.submitList(data ?: listOf())
         }
     }
+
+    @BindingAdapter("visibilityR")
+    @JvmStatic
+    fun funfun2(view: ConstraintLayout, int: Boolean) {
+        if (int) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+    @BindingAdapter("visibilityS")
+    @JvmStatic
+    fun funfu3(view: ConstraintLayout, int: Boolean) {
+        if (!int) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
+        }
+    }
+
+//    @BindingAdapter(value = ["listData", "recentSearchRes", "visibility"])
+//    @JvmStatic
+//    fun bindTemp(
+//        recyclerView: RecyclerView,
+//        searchRes: List<Location>?,
+//        recentSearchRes: List<Location>?,
+//        visibility: Boolean
+//    ) {
+//        val adapter = recyclerView.adapter as SearchLocationAdapter
+//
+//        if (visibility) {
+//            adapter.submitList(searchRes?.toList())
+//        } else {
+//            adapter.submitList(recentSearchRes?.toList())
+//        }
+//    }
 }

@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.mythio.weather.databinding.ItemSearchBinding
+import com.mythio.weather.databinding.ItemRecentBinding
 import com.mythio.weather.model.entity.Location
+import kotlinx.android.synthetic.main.item_recent.view.*
 
-class SearchLocationAdapter(
+class RecentLocationAdapter(
     private val onClickListener: OnClickListener
-) : ListAdapter<Location, SearchLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
+) : ListAdapter<Location, RecentLocationAdapter.LocationResponseViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Location>() {
         override fun areItemsTheSame(oldItem: Location, newItem: Location): Boolean {
@@ -23,7 +24,7 @@ class SearchLocationAdapter(
         }
     }
 
-    class LocationResponseViewHolder(private var binding: ItemSearchBinding) :
+    class LocationResponseViewHolder(private var binding: ItemRecentBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(location: Location) {
             binding.searchResults = location
@@ -32,11 +33,14 @@ class SearchLocationAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationResponseViewHolder {
-        return LocationResponseViewHolder(ItemSearchBinding.inflate(LayoutInflater.from(parent.context)))
+        return LocationResponseViewHolder(ItemRecentBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: LocationResponseViewHolder, position: Int) {
         val location = getItem(position)
+        holder.itemView.delete_btn.setOnClickListener {
+            onClickListener.delete(location)
+        }
         holder.itemView.setOnClickListener {
             onClickListener.onClick(location)
         }
@@ -45,5 +49,6 @@ class SearchLocationAdapter(
 
     interface OnClickListener {
         fun onClick(location: Location)
+        fun delete(location: Location)
     }
 }

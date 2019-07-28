@@ -18,6 +18,9 @@ data class CurrentImperial(
     @ColumnInfo(name = "windDir")
     override val windDirection: String,
 
+    @ColumnInfo(name = "precipMm")
+    val precipitation: Double,
+
     @ColumnInfo(name = "humidity")
     override val humidity: Int,
 

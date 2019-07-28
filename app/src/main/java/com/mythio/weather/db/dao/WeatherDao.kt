@@ -1,10 +1,7 @@
 package com.mythio.weather.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.mythio.weather.model.entity.CurrentW
 import com.mythio.weather.model.entity.ForecastW
 import com.mythio.weather.model.entity.Location
@@ -39,6 +36,9 @@ interface WeatherDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLocation(location: Location)
+
+    @Delete
+    fun deleteLocation(location: Location)
 
     @Query("select * from location")
     fun getLocation(): LiveData<List<Location>>

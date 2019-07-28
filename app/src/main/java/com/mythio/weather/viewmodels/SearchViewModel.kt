@@ -36,6 +36,12 @@ class SearchViewModel(
         }
     }
 
+    fun delete(location: Location) {
+        GlobalScope.launch {
+            repository.delete(location)
+        }
+    }
+
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()

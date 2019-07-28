@@ -7,6 +7,7 @@ data class CurrentWeather(
     val conditionText: String,
     val conditionIconRes: Int,
     val windSpeed: Double,
+    val precipitation: Double,
     val windDirection: String,
     val humidity: Int,
     val feelsLike: Double,

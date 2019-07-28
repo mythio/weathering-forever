@@ -31,6 +31,12 @@ class Repository private constructor(
         }
     }
 
+    suspend fun delete(location: Location) {
+        withContext(Dispatchers.IO) {
+            weatherDao.deleteLocation(location)
+        }
+    }
+
     fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
         return Transformations
             .map(weatherDao.getCurrentWeatherImperial()) { weather ->

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
+import com.mythio.weather.model.entity.Location
 import com.mythio.weather.repository.Repository
 import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.UNIT_IMPERIAL
