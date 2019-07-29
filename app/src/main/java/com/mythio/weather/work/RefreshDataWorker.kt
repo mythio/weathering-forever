@@ -9,7 +9,6 @@ import com.mythio.weather.utils.DEFAULT_LOCATION
 import com.mythio.weather.utils.SHARED_PREF_KEY_LOCATION
 import com.mythio.weather.utils.SHARED_PREF_NAME
 import retrofit2.HttpException
-import timber.log.Timber
 
 class RefreshDataWorker(
     context: Context,
@@ -28,7 +27,6 @@ class RefreshDataWorker(
 
         try {
             repository.getWeather(location)
-            Timber.d("WorkManager: Work request for sync is run")
         } catch (e: HttpException) {
             return Result.retry()
         }

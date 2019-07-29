@@ -3,7 +3,6 @@ package com.mythio.weather.ui
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -14,10 +13,7 @@ import com.mythio.weather.adapter.RecentLocationAdapter
 import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.ActivitySearchBinding
 import com.mythio.weather.model.entity.Location
-import com.mythio.weather.utils.InjectorUtils
-import com.mythio.weather.utils.NetworkState
-import com.mythio.weather.utils.SHARED_PREF_KEY_LOCATION
-import com.mythio.weather.utils.SHARED_PREF_NAME
+import com.mythio.weather.utils.*
 import com.mythio.weather.viewmodels.SearchViewModel
 import kotlinx.android.synthetic.main.activity_search.*
 

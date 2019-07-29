@@ -13,17 +13,4 @@ class WeatherApplication : Application() {
         super.onCreate()
 
     }
-
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
-        val currentNightMode = newConfig?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)
-        when (currentNightMode) {
-            UI_MODE_NIGHT_NO -> {
-                Log.d("TAG_TAG_TAG", "NIGHT_OFF")
-            } // Night mode is not active, we're using the light theme
-            UI_MODE_NIGHT_YES -> {
-                Log.d("TAG_TAG_TAG", "NIGHT_ON")
-            } // Night mode is active, we're using dark theme
-        }
-    }
 }
