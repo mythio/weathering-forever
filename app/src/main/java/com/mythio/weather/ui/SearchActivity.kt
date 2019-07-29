@@ -3,7 +3,6 @@ package com.mythio.weather.ui
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -69,12 +68,6 @@ class SearchActivity : AppCompatActivity() {
                 NetworkState.ERROR -> showSnackBar()
                 else -> {
                 }
-            }
-        })
-
-        viewModel.recentLocations.observe(this, Observer {
-            for (i in it) {
-                Log.d("TAG_TAG_TAG", i.name)
             }
         })
 
