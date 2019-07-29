@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.entity.Location
-import com.mythio.weather.repository.Repository
+import com.mythio.weather.repository.SearchRepository
 import com.mythio.weather.utils.NetworkState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -12,7 +12,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 class SearchViewModel(
-    private val repository: Repository
+    private val repository: SearchRepository
 ) : ViewModel() {
 
     val isDataAvailable = MutableLiveData(false)

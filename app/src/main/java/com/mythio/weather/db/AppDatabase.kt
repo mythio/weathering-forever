@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.mythio.weather.db.dao.LocationDao
 import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.entity.CurrentW
 import com.mythio.weather.model.entity.ForecastW
@@ -16,6 +17,8 @@ import com.mythio.weather.model.entity.Location
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao
+
+    abstract fun locationDao(): LocationDao
 
     companion object {
 

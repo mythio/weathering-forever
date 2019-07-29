@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.repository.Repository
+import com.mythio.weather.repository.WeatherRepository
 import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.UNIT_IMPERIAL
 import com.mythio.weather.utils.UNIT_METRIC
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 class WeatherViewModel(
-    private val repository: Repository
+    private val weatherRepository: WeatherRepository
 ) : ViewModel() {
 
     private val viewModelJob = SupervisorJob()
@@ -47,13 +47,13 @@ class WeatherViewModel(
     }
 
     private fun getDataImperial() {
-        currentWeather = repository.getCurrentWeatherImperial()
-        forecastWeather = repository.getForecastWeatherImperial()
+        currentWeather = weatherRepository.getCurrentWeatherImperial()
+        forecastWeather = weatherRepository.getForecastWeatherImperial()
     }
 
     private fun getDataMetric() {
-        currentWeather = repository.getCurrentWeatherMetric()
-        forecastWeather = repository.getForecastWeatherMetric()
+        currentWeather = weatherRepository.getCurrentWeatherMetric()
+        forecastWeather = weatherRepository.getForecastWeatherMetric()
     }
 
     private fun getWeather(location: String) {
@@ -61,7 +61,7 @@ class WeatherViewModel(
         viewModelScope.launch {
             _networkState.value = NetworkState.LOADING
             try {
-                repository.getWeather(location)
+                weatherRepository.getWeather(location)
                 _networkState.value = NetworkState.FINISH
             } catch (e: IOException) {
                 _networkState.value = NetworkState.ERROR

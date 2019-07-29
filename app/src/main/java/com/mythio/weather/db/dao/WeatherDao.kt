@@ -33,13 +33,4 @@ interface WeatherDao {
 
     @Query("delete from forecast_weather")
     fun clearForecast()
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertLocation(location: Location)
-
-    @Delete
-    fun deleteLocation(location: Location)
-
-    @Query("select * from location")
-    fun getLocation(): LiveData<List<Location>>
 }

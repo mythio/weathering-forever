@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.mythio.weather.db.AppDatabase
-import com.mythio.weather.repository.Repository
+import com.mythio.weather.repository.WeatherRepository
 import com.mythio.weather.utils.DEFAULT_LOCATION
 import com.mythio.weather.utils.SHARED_PREF_KEY_LOCATION
 import com.mythio.weather.utils.SHARED_PREF_NAME
@@ -18,7 +18,7 @@ class RefreshDataWorker(
 
     override suspend fun doWork(): Result {
 
-        val repository = Repository.getInstance(
+        val repository = WeatherRepository.getInstance(
             AppDatabase.getInstance(applicationContext).weatherDao()
         )
 

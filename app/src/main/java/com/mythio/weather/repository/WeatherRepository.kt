@@ -12,7 +12,7 @@ import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class Repository private constructor(
+class WeatherRepository private constructor(
     private val weatherDao: WeatherDao
 ) {
 
@@ -71,30 +71,14 @@ class Repository private constructor(
         }
     }
 
-    fun getRecentLocations(): LiveData<List<Location>> {
-        return weatherDao.getLocation()
-    }
-
-    suspend fun addRecentLocations(location: Location) {
-        withContext(Dispatchers.IO) {
-            weatherDao.insertLocation(location)
-        }
-    }
-
-    suspend fun deleteRecentLocations(location: Location) {
-        withContext(Dispatchers.IO) {
-            weatherDao.deleteLocation(location)
-        }
-    }
-
     companion object {
 
         @Volatile
-        private var instance: Repository? = null
+        private var instance: WeatherRepository? = null
 
         fun getInstance(dao: WeatherDao) =
             instance ?: synchronized(this) {
-                instance ?: Repository(dao).also { instance = it }
+                instance ?: WeatherRepository(dao).also { instance = it }
             }
     }
 }
