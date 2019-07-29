@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.model.entity.Location
 import com.mythio.weather.repository.Repository
 import com.mythio.weather.utils.NetworkState
 import com.mythio.weather.utils.UNIT_IMPERIAL
@@ -34,14 +33,8 @@ class WeatherViewModel(
         getWeather(location)
 
         when (unit) {
-            UNIT_IMPERIAL -> {
-                currentWeather = repository.getCurrentWeatherImperial()
-                forecastWeather = repository.getForecastWeatherImperial()
-            }
-            UNIT_METRIC -> {
-                currentWeather = repository.getCurrentWeatherMetric()
-                forecastWeather = repository.getForecastWeatherMetric()
-            }
+            UNIT_IMPERIAL -> getDataImperial()
+            UNIT_METRIC -> getDataMetric()
         }
     }
 
@@ -51,6 +44,16 @@ class WeatherViewModel(
 
     fun updateLocation(location: String) {
         getWeather(location)
+    }
+
+    private fun getDataImperial() {
+        currentWeather = repository.getCurrentWeatherImperial()
+        forecastWeather = repository.getForecastWeatherImperial()
+    }
+
+    private fun getDataMetric() {
+        currentWeather = repository.getCurrentWeatherMetric()
+        forecastWeather = repository.getForecastWeatherMetric()
     }
 
     private fun getWeather(location: String) {

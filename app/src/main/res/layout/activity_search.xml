@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -48,7 +49,7 @@
                     android:inputType="textFilter"
                     android:maxLines="1"
                     android:minHeight="32dp"
-                    app:searchQuery="@={searchViewModel.location}" />
+                    app:searchQuery="@={searchViewModel.searchLocationQuery}" />
 
             </LinearLayout>
 
@@ -80,7 +81,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_recentBanner"
-                app:listData="@{searchViewModel.locationList}"
+                app:listData="@{searchViewModel.recentLocations}"
                 tools:itemCount="4"
                 tools:listitem="@layout/item_recent" />
 
@@ -112,11 +113,12 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_searchBanner"
-                app:listData="@{searchViewModel.searchResults}"
+                app:listData="@{searchViewModel.searchLocations}"
                 tools:itemCount="4"
                 tools:listitem="@layout/item_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

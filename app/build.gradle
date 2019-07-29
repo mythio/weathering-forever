@@ -83,5 +83,4 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-14'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-14'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
 }

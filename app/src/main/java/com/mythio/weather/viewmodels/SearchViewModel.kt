@@ -5,7 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mythio.weather.model.entity.Location
 import com.mythio.weather.repository.Repository
-import kotlinx.coroutines.*
+import com.mythio.weather.utils.NetworkState
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val repository: Repository
@@ -15,37 +19,56 @@ class SearchViewModel(
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    var locationList: LiveData<List<Location>> = repository.getLocation()
 
-    val location = MutableLiveData<String>()
+    val searchLocationQuery = MutableLiveData<String>()
 
-    private val _searchResults = repository.searchResponse
-    val searchResults: LiveData<List<Location>>
-        get() = _searchResults
+    var recentLocations: LiveData<List<Location>> = MutableLiveData()
+
+    private var _searchLocations = MutableLiveData<List<Location>>()
+    val searchLocations: LiveData<List<Location>>
+        get() = _searchLocations
+
+    private val _networkState = MutableLiveData<NetworkState>()
+    val networkState: LiveData<NetworkState>
+        get() = _networkState
+
+    init {
+        attachObserver()
+    }
 
     fun getSearchData(location: String) {
+        _networkState.value = NetworkState.LOADING
         viewModelScope.launch {
-            repository.searchLocation(location)
-            isDataAvailable.value = _searchResults.value?.isNotEmpty()
+            try {
+                _searchLocations.value = repository.searchLocation(location)
+                isDataAvailable.value = searchLocations.value?.isNotEmpty()
+                _networkState.value = NetworkState.FINISH
+            } catch (e: Exception) {
+                _networkState.value = NetworkState.ERROR
+            }
         }
     }
 
     fun add(location: Location) {
-        GlobalScope.launch {
-            repository.add(location)
+        viewModelScope.launch {
+            repository.addRecentLocations(location)
         }
     }
 
     fun delete(location: Location) {
-        GlobalScope.launch {
-            repository.delete(location)
+        viewModelScope.launch {
+            repository.deleteRecentLocations(location)
         }
+    }
+
+    private fun attachObserver() {
+        recentLocations = repository.getRecentLocations()
     }
 
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-        _searchResults.value = emptyList()
-        location.value = emptySequence<String>().toString()
+        _searchLocations.value = emptyList()
+        searchLocationQuery.value = emptySequence<String>().toString()
     }
 }

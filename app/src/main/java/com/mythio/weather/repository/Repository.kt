@@ -1,14 +1,12 @@
 package com.mythio.weather.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.network.WeatherApi
 import com.mythio.weather.model.entity.Location
+import com.mythio.weather.network.WeatherApi
 import com.mythio.weather.utils.API_KEY
 import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
@@ -17,25 +15,6 @@ import kotlinx.coroutines.withContext
 class Repository private constructor(
     private val weatherDao: WeatherDao
 ) {
-
-    val searchResponse = MutableLiveData<List<Location>>()
-
-    fun getLocation(): LiveData<List<Location>> {
-        return weatherDao.getLocation()
-    }
-
-    suspend fun add(location: Location) {
-        withContext(Dispatchers.IO) {
-            weatherDao.insertLocation(location)
-            Log.d("TAG_TAG_TAG", "Add")
-        }
-    }
-
-    suspend fun delete(location: Location) {
-        withContext(Dispatchers.IO) {
-            weatherDao.deleteLocation(location)
-        }
-    }
 
     fun getCurrentWeatherImperial(): LiveData<CurrentWeather> {
         return Transformations
@@ -69,17 +48,8 @@ class Repository private constructor(
             }
     }
 
-    suspend fun searchLocation(location: String) {
-        withContext(Dispatchers.Main) {
-            searchResponse.value = WeatherApi
-                .retrofitService
-                .getSearchLocationAsync(API_KEY, location).body()
-        }
-    }
-
     suspend fun getWeather(location: String) {
         withContext(Dispatchers.IO) {
-
             val response = WeatherApi
                 .retrofitService
                 .getWeatherAsync(API_KEY, location, 5)
@@ -90,6 +60,30 @@ class Repository private constructor(
                 weatherDao.clearForecast()
                 weatherDao.upsertForecastWeather(data.forecast.forecastday.subList(1, 5))
             }
+        }
+    }
+
+    suspend fun searchLocation(location: String): List<Location>? {
+        return withContext(Dispatchers.IO) {
+            WeatherApi
+                .retrofitService
+                .getSearchLocationAsync(API_KEY, location).body()
+        }
+    }
+
+    fun getRecentLocations(): LiveData<List<Location>> {
+        return weatherDao.getLocation()
+    }
+
+    suspend fun addRecentLocations(location: Location) {
+        withContext(Dispatchers.IO) {
+            weatherDao.insertLocation(location)
+        }
+    }
+
+    suspend fun deleteRecentLocations(location: Location) {
+        withContext(Dispatchers.IO) {
+            weatherDao.deleteLocation(location)
         }
     }
 

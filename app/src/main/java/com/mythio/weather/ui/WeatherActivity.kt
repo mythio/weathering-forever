@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -34,7 +33,6 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         val binding: ActivityWeatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather)
 
         binding.lifecycleOwner = this
@@ -49,7 +47,7 @@ class WeatherActivity : AppCompatActivity() {
             startActivityForResult(Intent(this, SearchActivity::class.java), 69)
         }
 
-        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
+        root.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 super.onRefresh(refreshLayout)
                 viewModel.refreshData(location)
@@ -61,11 +59,11 @@ class WeatherActivity : AppCompatActivity() {
         viewModel.networkState.observe(this, Observer { networkState ->
             when (networkState) {
                 NetworkState.FINISH -> {
-                    refreshLayout.finishRefresh(600)
+                    root.finishRefresh(600)
                 }
                 NetworkState.ERROR -> {
                     showSnackBar()
-                    refreshLayout.finishRefresh(600)
+                    root.finishRefresh(600)
                 }
                 else -> {
                 }
@@ -75,9 +73,9 @@ class WeatherActivity : AppCompatActivity() {
 
     private fun showSnackBar() {
         Snackbar
-            .make(refreshLayout, "Can't connect", Snackbar.LENGTH_LONG)
+            .make(root, "Can't connect", Snackbar.LENGTH_LONG)
             .setActionTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-            .setAction("RETRY") { refreshLayout.autoRefresh() }
+            .setAction("RETRY") { root.autoRefresh() }
             .show()
     }
 
@@ -85,7 +83,7 @@ class WeatherActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 69 && resultCode == Activity.RESULT_OK) {
             location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
-            viewModel.getData(location, unit)
+            viewModel.updateLocation(location)
         } else {
             Log.d("TAG_TAG_TAG", "CANCELLED")
         }

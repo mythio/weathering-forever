@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="searchResults"
+            name="item"
             type="com.mythio.weather.model.entity.Location" />
     </data>
 
@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_weight="1"
-                android:text="@{searchResults.name}"
+                android:text="@{item.name}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 tools:text="Panaji" />
