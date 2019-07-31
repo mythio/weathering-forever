@@ -46,6 +46,7 @@ dependencies {
 
     //  Room
     implementation "androidx.room:room-runtime:$room_version"
+    implementation 'androidx.preference:preference:1.1.0-rc01'
     kapt "androidx.room:room-compiler:$room_version"
 
     //  Material Design

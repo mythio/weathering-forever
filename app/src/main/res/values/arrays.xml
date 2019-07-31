@@ -1,0 +1,25 @@
+<resources>
+
+    <string-array name="unit_entries">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+    </string-array>
+
+    <string-array name="unit_values">
+        <item>unit_celsius</item>
+        <item>unit_fahrenheit</item>
+    </string-array>
+
+    <string-array name="theme_entries">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System theme</item>
+    </string-array>
+
+    <string-array name="theme_values">
+        <item>theme_light</item>
+        <item>theme_dark</item>
+        <item>theme_system_theme</item>
+    </string-array>
+
+</resources>

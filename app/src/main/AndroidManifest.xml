@@ -15,7 +15,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.SearchActivity"></activity>
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.WeatherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

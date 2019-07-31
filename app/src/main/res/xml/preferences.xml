@@ -1,0 +1,58 @@
+<!--
+  ~ Copyright 2018 The app Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="GENERAL">
+
+        <ListPreference
+            app:defaultValue="unit_celsius"
+            app:entries="@array/unit_entries"
+            app:entryValues="@array/unit_values"
+            app:key="app_unit"
+            app:title="Unit"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="theme_system_theme"
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="app_theme"
+            app:title="Theme"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="ABOUT">
+
+        <Preference
+            app:key="app_support"
+            app:summary="mythio.2909@gmail.com"
+            app:title="Support" />
+
+        <Preference
+            app:key="app_licence"
+            app:summary="Open-source licences"
+            app:title="Licence" />
+
+        <Preference
+            app:key="app_version"
+            app:summary="version"
+            app:title="Version" />
+
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

@@ -43,7 +43,8 @@ class WeatherActivity : AppCompatActivity() {
         unit = pref.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)
 
         ib_search.setOnClickListener {
-            startActivityForResult(Intent(this, SearchActivity::class.java), 69)
+            startActivity(Intent(this, SettingsActivity::class.java))
+//            startActivityForResult(Intent(this, SearchActivity::class.java), 69)
         }
 
         root.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
