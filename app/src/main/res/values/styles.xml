@@ -7,7 +7,7 @@
         <item name="colorControlHighlight">@color/colorAccent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/statusBar</item>
-        <item name="android:fontFamily">@font/quicksand</item>
+        <item name="android:fontFamily">@font/quicksand_medium</item>
         <item name="android:windowBackground">@color/windowBg</item>
     </style>
 

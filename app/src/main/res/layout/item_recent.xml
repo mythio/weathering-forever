@@ -26,7 +26,6 @@
                 android:layout_weight="1"
                 android:text="@{item.name}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 tools:text="Panaji" />
 
             <ImageButton

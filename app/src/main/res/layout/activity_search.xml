@@ -70,7 +70,6 @@
                 android:text="Recent Searches"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -102,7 +101,6 @@
                 android:text="Search Results"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
-                android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView

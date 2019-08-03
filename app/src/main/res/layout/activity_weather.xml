@@ -44,6 +44,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/ib_settings"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_margin="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_settings"
+                android:tint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toStartOf="@id/ib_search"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_temperature"
                 android:layout_width="wrap_content"
@@ -52,7 +63,6 @@
                 android:includeFontPadding="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="48sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +80,6 @@
                 android:text="@{weatherViewModel.currentWeather.location}"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_temperature"
@@ -95,7 +104,6 @@
                 android:layout_marginTop="4dp"
                 android:text="@{weatherViewModel.currentWeather.conditionText}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/iv_condition"
                 app:layout_constraintStart_toStartOf="@+id/iv_condition"
                 app:layout_constraintTop_toBottomOf="@+id/iv_condition"
@@ -120,7 +128,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/iv_wind"
                 app:layout_constraintStart_toStartOf="@+id/iv_wind"
                 app:layout_constraintTop_toBottomOf="@+id/iv_wind"
@@ -144,7 +151,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 app:humidity="@{weatherViewModel.currentWeather.humidity}"
                 app:layout_constraintEnd_toEndOf="@+id/iv_humidity"
                 app:layout_constraintStart_toStartOf="@+id/iv_humidity"
@@ -169,7 +175,6 @@
                 android:layout_marginTop="4dp"
                 android:text="@{Double.toString(weatherViewModel.currentWeather.uvIndex)}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/iv_uv"
                 app:layout_constraintStart_toStartOf="@+id/iv_uv"
                 app:layout_constraintTop_toBottomOf="@+id/iv_uv"
@@ -193,7 +198,6 @@
                 android:layout_marginTop="4dp"
                 android:text="@{Double.toString(weatherViewModel.currentWeather.precipitation)}"
                 android:textColor="@color/colorPrimaryDark"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/iv_precipitation"
                 app:layout_constraintStart_toStartOf="@+id/iv_precipitation"
                 app:layout_constraintTop_toBottomOf="@+id/iv_precipitation"

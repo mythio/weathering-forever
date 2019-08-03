@@ -5,7 +5,6 @@ import androidx.lifecycle.Transformations
 import com.mythio.weather.db.dao.WeatherDao
 import com.mythio.weather.model.domain.CurrentWeather
 import com.mythio.weather.model.domain.ForecastWeather
-import com.mythio.weather.model.entity.Location
 import com.mythio.weather.network.WeatherApi
 import com.mythio.weather.utils.API_KEY
 import com.mythio.weather.utils.convert
@@ -60,14 +59,6 @@ class WeatherRepository private constructor(
                 weatherDao.clearForecast()
                 weatherDao.upsertForecastWeather(data.forecast.forecastday.subList(1, 5))
             }
-        }
-    }
-
-    suspend fun searchLocation(location: String): List<Location>? {
-        return withContext(Dispatchers.IO) {
-            WeatherApi
-                .retrofitService
-                .getSearchLocationAsync(API_KEY, location).body()
         }
     }
 
