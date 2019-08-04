@@ -5,13 +5,17 @@ apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    def versionMajor = 1
+    def versionMinor = 0
+    def versionPatch = 0
+
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.mythio.weather"
         minSdkVersion 23
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 29
+        versionCode versionMajor * 10000 + versionMinor * 100 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

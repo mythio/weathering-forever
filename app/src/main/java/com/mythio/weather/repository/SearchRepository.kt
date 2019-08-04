@@ -1,15 +1,10 @@
 package com.mythio.weather.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.mythio.weather.db.dao.LocationDao
-import com.mythio.weather.db.dao.WeatherDao
-import com.mythio.weather.model.domain.CurrentWeather
-import com.mythio.weather.model.domain.ForecastWeather
 import com.mythio.weather.model.entity.Location
 import com.mythio.weather.network.WeatherApi
 import com.mythio.weather.utils.API_KEY
-import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

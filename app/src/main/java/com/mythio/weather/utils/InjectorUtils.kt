@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.mythio.weather.db.AppDatabase
-import com.mythio.weather.repository.WeatherRepository
 import com.mythio.weather.repository.SearchRepository
+import com.mythio.weather.repository.WeatherRepository
 import com.mythio.weather.viewmodels.SearchViewModel
 import com.mythio.weather.viewmodels.WeatherViewModel
 

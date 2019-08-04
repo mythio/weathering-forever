@@ -7,8 +7,10 @@ const val BASE_URL = "http://api.apixu.com/v1/"
 const val API_KEY = "70ef3b7f24484a918b782502191207"
 
 const val SHARED_PREF_NAME = BuildConfig.APPLICATION_ID + ".PREF"
+
 const val SHARED_PREF_KEY_LOCATION = BuildConfig.APPLICATION_ID + ".LOCATION"
 const val SHARED_PREF_KEY_UNIT = BuildConfig.APPLICATION_ID + ".UNIT"
+const val SHARED_PREF_KEY_THEME = BuildConfig.APPLICATION_ID + ".THEME"
 
 const val DEFAULT_LOCATION = "los-angeles-california-united-states-of-america"
 const val DEFAULT_UNIT = 0

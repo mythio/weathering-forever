@@ -1,10 +1,12 @@
 package com.mythio.weather.db.dao
 
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.mythio.weather.model.entity.CurrentW
 import com.mythio.weather.model.entity.ForecastW
-import com.mythio.weather.model.entity.Location
 import com.mythio.weather.model.entity.current.CurrentImperial
 import com.mythio.weather.model.entity.current.CurrentMetric
 import com.mythio.weather.model.entity.forecast.ForecastImperial

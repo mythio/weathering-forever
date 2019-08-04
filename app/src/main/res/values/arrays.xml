@@ -1,13 +1,13 @@
 <resources>
 
     <string-array name="unit_entries">
-        <item>Celsius</item>
-        <item>Fahrenheit</item>
+        <item>Metric</item>
+        <item>Imperial</item>
     </string-array>
 
     <string-array name="unit_values">
-        <item>unit_celsius</item>
-        <item>unit_fahrenheit</item>
+        <item>unit_metric</item>
+        <item>unit_imperial</item>
     </string-array>
 
     <string-array name="theme_entries">
@@ -19,7 +19,7 @@
     <string-array name="theme_values">
         <item>theme_light</item>
         <item>theme_dark</item>
-        <item>theme_system_theme</item>
+        <item>theme_system</item>
     </string-array>
 
 </resources>
