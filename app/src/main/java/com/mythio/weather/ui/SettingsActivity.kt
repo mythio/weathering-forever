@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -58,23 +58,23 @@ class SettingsActivity : AppCompatActivity() {
                 when (newValue.toString()) {
                     "theme_light" -> {
                         pref.edit()
-                            .putInt(SHARED_PREF_KEY_THEME, MODE_NIGHT_NO)
+                            .putInt(SHARED_PREF_KEY_THEME, AppCompatDelegate.MODE_NIGHT_NO)
                             .apply()
-                        setDefaultNightMode(MODE_NIGHT_NO)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                     }
 
                     "theme_dark" -> {
                         pref.edit()
-                            .putInt(SHARED_PREF_KEY_THEME, MODE_NIGHT_YES)
+                            .putInt(SHARED_PREF_KEY_THEME, AppCompatDelegate.MODE_NIGHT_YES)
                             .apply()
-                        setDefaultNightMode(MODE_NIGHT_YES)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     }
 
                     "theme_system" -> {
                         pref.edit()
-                            .putInt(SHARED_PREF_KEY_THEME, MODE_NIGHT_FOLLOW_SYSTEM)
+                            .putInt(SHARED_PREF_KEY_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                             .apply()
-                        setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                     }
                 }
                 true
