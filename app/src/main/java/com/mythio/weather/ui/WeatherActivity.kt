@@ -42,9 +42,12 @@ class WeatherActivity : AppCompatActivity() {
         location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
         unit = pref.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)
 
-        ib_search.setOnClickListener {
+        ib_settings.setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
-//            startActivityForResult(Intent(this, SearchActivity::class.java), 69)
+        }
+
+        ib_search.setOnClickListener {
+            startActivityForResult(Intent(this, SearchActivity::class.java), RESULT_CODE_LOC)
         }
 
         root.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
@@ -81,7 +84,7 @@ class WeatherActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 69 && resultCode == Activity.RESULT_OK) {
+        if (requestCode == RESULT_CODE_LOC && resultCode == Activity.RESULT_OK) {
             location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
             viewModel.updateLocation(location)
         } else {

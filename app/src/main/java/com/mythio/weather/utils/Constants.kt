@@ -17,6 +17,8 @@ const val DEFAULT_UNIT = 0
 const val UNIT_METRIC = 0
 const val UNIT_IMPERIAL = 1
 
+const val RESULT_CODE_LOC = 31
+
 enum class NetworkState {
     FINISH,
     LOADING,
