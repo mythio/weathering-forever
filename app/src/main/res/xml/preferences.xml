@@ -19,7 +19,7 @@
     <PreferenceCategory app:title="GENERAL">
 
         <ListPreference
-            app:defaultValue="unit_celsius"
+            app:defaultValue="unit_metric"
             app:entries="@array/unit_entries"
             app:entryValues="@array/unit_values"
             app:key="app_unit"
@@ -27,7 +27,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="theme_system_theme"
+            app:defaultValue="theme_system"
             app:entries="@array/theme_entries"
             app:entryValues="@array/theme_values"
             app:key="app_theme"
