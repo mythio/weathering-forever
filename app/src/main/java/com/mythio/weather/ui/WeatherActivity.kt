@@ -1,6 +1,5 @@
 package com.mythio.weather.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -19,7 +18,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import kotlinx.android.synthetic.main.activity_weather.*
 
-class WeatherActivity : AppCompatActivity() {
+class WeatherActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val viewModel: WeatherViewModel by viewModels {
         InjectorUtils.provideWeatherViewModelFactory(this)
@@ -47,13 +46,13 @@ class WeatherActivity : AppCompatActivity() {
         }
 
         ib_search.setOnClickListener {
-            startActivityForResult(Intent(this, SearchActivity::class.java), RESULT_CODE_LOC)
+            startActivity(Intent(this, SearchActivity::class.java))
         }
 
         root.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onRefresh(refreshLayout: RefreshLayout) {
                 super.onRefresh(refreshLayout)
-                viewModel.refreshData(location)
+                viewModel.getData(location, unit)
             }
         })
 
@@ -82,13 +81,22 @@ class WeatherActivity : AppCompatActivity() {
             .show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RESULT_CODE_LOC && resultCode == Activity.RESULT_OK) {
-            location = pref.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
-            viewModel.updateLocation(location)
-        } else {
-            Log.d("TAG_TAG_TAG", "CANCELLED")
+    override fun onStart() {
+        super.onStart()
+        pref.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
+        Log.d("TAG_TAG_TAG", "CALLED")
+        when (p1) {
+            SHARED_PREF_KEY_LOCATION -> {
+                location = p0?.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!
+                viewModel.getData(location, unit)
+            }
+            SHARED_PREF_KEY_UNIT -> {
+                unit = p0?.getInt(SHARED_PREF_KEY_UNIT, DEFAULT_UNIT)!!
+                viewModel.getData(location, unit)
+            }
         }
     }
 }

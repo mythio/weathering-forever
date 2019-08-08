@@ -33,10 +33,11 @@ class SearchActivity : AppCompatActivity() {
 
         binding.rvRecent.adapter = RecentLocationAdapter(object : RecentLocationAdapter.OnClickListener {
             override fun onClick(location: Location) {
-                getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE).edit()
-                    .putString(SHARED_PREF_KEY_LOCATION, location.name).apply()
+                getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+                    .edit()
+                    .putString(SHARED_PREF_KEY_LOCATION, location.name)
+                    .apply()
 
-                setResult(Activity.RESULT_OK)
                 finish()
             }
 
@@ -48,8 +49,10 @@ class SearchActivity : AppCompatActivity() {
         binding.rvSearch.adapter = SearchLocationAdapter(object : SearchLocationAdapter.OnClickListener {
             override fun onClick(location: Location) {
                 viewModel.add(location)
-                getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE).edit()
-                    .putString(SHARED_PREF_KEY_LOCATION, location.name).apply()
+                getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+                    .edit()
+                    .putString(SHARED_PREF_KEY_LOCATION, location.name)
+                    .apply()
                 setResult(Activity.RESULT_OK)
                 finish()
             }

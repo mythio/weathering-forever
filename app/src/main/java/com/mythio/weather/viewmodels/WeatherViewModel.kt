@@ -38,14 +38,6 @@ class WeatherViewModel(
         }
     }
 
-    fun refreshData(location: String) {
-        getWeather(location)
-    }
-
-    fun updateLocation(location: String) {
-        getWeather(location)
-    }
-
     private fun getDataImperial() {
         currentWeather = weatherRepository.getCurrentWeatherImperial()
         forecastWeather = weatherRepository.getForecastWeatherImperial()
