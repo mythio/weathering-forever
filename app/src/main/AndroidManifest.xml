@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.WeatherActivity">
             <intent-filter>

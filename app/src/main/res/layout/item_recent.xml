@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_close"
+                android:src="@drawable/ic_delete"
                 android:tint="@android:color/holo_red_dark" />
 
         </LinearLayout>

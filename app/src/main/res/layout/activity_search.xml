@@ -69,7 +69,7 @@
                 android:layout_margin="16dp"
                 android:text="Recent Searches"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -100,7 +100,7 @@
                 android:layout_margin="16dp"
                 android:text="Search Results"
                 android:textColor="@color/colorAccent"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView

@@ -7,7 +7,7 @@ buildscript {
         srl_version = '1.1.0-andx-14'
         workmanager_version = '1.0.1'
         room_version = '2.1.0'
-        material_version = '1.1.0-alpha08'
+        material_version = '1.1.0-alpha09'
         retrofit_version = '2.6.0'
         mochi_version = '1.6.0'
         coroutines_version = '1.0.1'
