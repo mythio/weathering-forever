@@ -1,0 +1,2 @@
+# weathering-forever
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/725a773a050b4011a8144b851d2e1e2e)](https://app.codacy.com/app/mythio/weathering-forever?utm_source=github.com&utm_medium=referral&utm_content=mythio/weathering-forever&utm_campaign=Badge_Grade_Dashboard)
