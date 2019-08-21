@@ -3,8 +3,11 @@ package com.mythio.weather.ui
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.util.Log
 import android.widget.RemoteViews
 import com.mythio.weather.R
+import com.mythio.weather.db.AppDatabase
+import kotlinx.coroutines.*
 
 /**
  * Implementation of App Widget functionality.
@@ -12,7 +15,6 @@ import com.mythio.weather.R
 class WeatherWidget : AppWidgetProvider() {
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-        // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId)
         }
@@ -32,15 +34,17 @@ class WeatherWidget : AppWidgetProvider() {
             context: Context, appWidgetManager: AppWidgetManager,
             appWidgetId: Int
         ) {
-
-            val widgetText = context.getString(R.string.appwidget_text)
-            // Construct the RemoteViews object
+            val db = AppDatabase.getInstance(context.applicationContext).weatherDao()
             val views = RemoteViews(context.packageName, R.layout.weather_widget)
-            views.setTextViewText(R.id.appwidget_text, widgetText)
-
-            // Instruct the widget manager to update the widget
+            GlobalScope.launch {
+                val weather = db.getCurrentWeatherMetricAsync()
+                Log.d("TAG_TAG_TAG", "weather: " + weather.temperature);
+                withContext(Dispatchers.Main) {
+                    Log.d("TAG_TAG_TAG", "weather: " + weather.temperature);
+                    views.setTextViewText(R.id.tv_counter, " asd " + weather.temperature)
+                }
+            }
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
 }
-
