@@ -1,4 +1,10 @@
-# weathering-forever
+```                      __  __              _                   ____                              
+ _      _____  ____ _/ /_/ /_  ___  _____(_)___  ____ _      / __/___  ________ _   _____  _____
+| | /| / / _ \/ __ `/ __/ __ \/ _ \/ ___/ / __ \/ __ `/_____/ /_/ __ \/ ___/ _ \ | / / _ \/ ___/
+| |/ |/ /  __/ /_/ / /_/ / / /  __/ /  / / / / / /_/ /_____/ __/ /_/ / /  /  __/ |/ /  __/ /    
+|__/|__/\___/\__,_/\__/_/ /_/\___/_/  /_/_/ /_/\__, /     /_/  \____/_/   \___/|___/\___/_/     
+                                              /____/                                            
+```
 [wip]: Weather application which caches weather forecast daily (Automatically!)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c78b8c8f27c9401980e505185cd0f884)](https://www.codacy.com/app/mythio/weathering-forever?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mythio/weathering-forever&amp;utm_campaign=Badge_Grade)
