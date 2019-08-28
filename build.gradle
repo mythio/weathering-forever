@@ -3,7 +3,7 @@
 buildscript {
     ext {
         nav_version = '2.0.0'
-        lifecycle_version = '2.2.0-alpha02'
+        lifecycle_version = '2.2.0-alpha03'
         srl_version = '1.1.0-andx-14'
         workmanager_version = '1.0.1'
         room_version = '2.1.0'
@@ -19,7 +19,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }

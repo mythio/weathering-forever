@@ -1,18 +1,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/widget_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#09c"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="@dimen/widget_margin">
+    tools:background="@android:color/black">
 
     <TextView
-        android:id="@+id/tv_counter"
-        android:textColor="#fff"
-        android:textStyle="bold"
+        android:id="@+id/widget_tv_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NULL" />
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="24sp"
+        tools:text="23" />
+
+    <ImageView
+        android:id="@+id/widget_img_condition"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:tint="#fff"
+        tools:src="@drawable/ic_cloud" />
+
+    <TextView
+        android:id="@+id/widget_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        tools:text="Panaji, India" />
 
 </LinearLayout>

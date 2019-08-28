@@ -11,7 +11,7 @@ import com.mythio.weather.utils.convert
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class WeatherRepository private constructor(
+class WeatherRepository constructor(
     private val weatherDao: WeatherDao
 ) {
 

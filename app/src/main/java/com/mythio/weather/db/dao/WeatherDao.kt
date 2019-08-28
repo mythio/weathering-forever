@@ -25,16 +25,25 @@ interface WeatherDao {
     fun getCurrentWeatherMetric(): LiveData<CurrentMetric>
 
     @Query("select * from current_weather where id = 0")
+    fun getCurrentWeatherImperial(): LiveData<CurrentImperial>
+
+    @Query("select * from current_weather where id = 0")
     suspend fun getCurrentWeatherMetricAsync(): CurrentMetric
 
     @Query("select * from current_weather where id = 0")
-    fun getCurrentWeatherImperial(): LiveData<CurrentImperial>
+    suspend fun getCurrentWeatherImperialAsync(): CurrentImperial
 
     @Query("select * from forecast_weather")
     fun getForecastMetric(): LiveData<List<ForecastMetric>>
 
     @Query("select * from forecast_weather")
     fun getForecastImperial(): LiveData<List<ForecastImperial>>
+
+    @Query("select * from forecast_weather")
+    fun getForecastMetricAsync(): List<ForecastMetric>
+
+    @Query("select * from forecast_weather")
+    fun getForecastImperialAsync(): List<ForecastImperial>
 
     @Query("delete from forecast_weather")
     fun clearForecast()
