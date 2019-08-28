@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
+    android:theme="@style/AppTheme"
     tools:background="@android:color/black">
 
     <TextView
