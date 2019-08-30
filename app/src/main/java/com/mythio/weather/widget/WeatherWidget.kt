@@ -1,4 +1,4 @@
-package com.mythio.weather.ui
+package com.mythio.weather.widget
 
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
@@ -14,10 +14,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
-/**
- * Implementation of App Widget functionality.
- */
 class WeatherWidget : AppWidgetProvider() {
 
     override fun onUpdate(
@@ -26,16 +22,20 @@ class WeatherWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
+            updateAppWidget(
+                context,
+                appWidgetManager,
+                appWidgetId
+            )
         }
     }
 
     override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
+
     }
 
     override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
+
     }
 
     companion object {
@@ -52,7 +52,7 @@ class WeatherWidget : AppWidgetProvider() {
 
             val db = AppDatabase.getInstance(context.applicationContext).weatherDao()
             val repository = WeatherRepository(db)
-            val views = RemoteViews(context.packageName, R.layout.weather_widget)
+            val views = RemoteViews(context.packageName, R.layout.widget_weather)
 
             CoroutineScope(Dispatchers.IO).launch {
                 repository.getWeather(location)

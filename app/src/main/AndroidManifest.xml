@@ -15,7 +15,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <receiver android:name=".ui.WeatherWidget">
+        <receiver
+            android:name=".widget.WeatherWidget"
+            android:label="Forecast">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
