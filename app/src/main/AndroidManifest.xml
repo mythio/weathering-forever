@@ -17,7 +17,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <receiver
             android:name=".widget.WeatherWidget"
-            android:label="Forecast">
+            android:label="Current Weather">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -25,6 +25,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/weather_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".widget.ForecastWidget"
+            android:label="Forecast">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/forecast_widget_info" />
         </receiver>
 
         <activity

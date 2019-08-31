@@ -15,6 +15,10 @@ class RefreshDataWorker(
     params: WorkerParameters
 ) : CoroutineWorker(context, params) {
 
+    companion object {
+        const val WORK_NAME = "WEATHER_UPDATE"
+    }
+
     override suspend fun doWork(): Result {
 
         val repository = WeatherRepository.getInstance(

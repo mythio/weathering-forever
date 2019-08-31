@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme"
+    tools:background="@android:color/black">
+
+    <TextView
+        android:id="@+id/widget_tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="28sp"
+        tools:text="23°" />
+
+    <ImageView
+        android:id="@+id/widget_img_condition"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:tint="#fff"
+        tools:src="@drawable/ic_cloud" />
+
+    <TextView
+        android:id="@+id/widget_tv_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        tools:text="Panaji, India" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal"
+        android:paddingStart="48dp"
+        android:paddingEnd="48dp"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_iv_condition_1"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:tint="#fff"
+                tools:src="@drawable/ic_cloud" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                tools:text="MON" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_iv_condition_2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:tint="#fff"
+                tools:src="@drawable/ic_cloud" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                tools:text="MON" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_iv_condition_3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:tint="#fff"
+                tools:src="@drawable/ic_cloud" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                tools:text="MON" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_iv_condition_4"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:tint="#fff"
+                tools:src="@drawable/ic_cloud" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                tools:text="MON" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
