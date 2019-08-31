@@ -63,13 +63,23 @@ class WeatherWidget : AppWidgetProvider() {
                     else -> null
                 }!!
 
+                val locationTokens = location.split(',')
+                var locationShort = ""
+
+                for (i in locationTokens.indices - 1) {
+                    locationShort += locationTokens[i]
+                    if (i != locationTokens.size - 1) {
+                        locationShort += ", "
+                    }
+                }
+
                 views.setTextViewText(R.id.widget_tv_temperature, "${weather.temperature}\u00B0")
                 views.setImageViewResource(
                     R.id.widget_img_condition,
                     codeIconRes(weather.conditionCode)
                 )
 
-                views.setTextViewText(R.id.widget_tv_location, location)
+                views.setTextViewText(R.id.widget_tv_location, locationShort)
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
 

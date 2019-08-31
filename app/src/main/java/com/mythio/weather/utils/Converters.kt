@@ -45,7 +45,10 @@ fun ForecastImperial.convert(): ForecastWeather {
         unit = UNIT_IMPERIAL,
         temperature = temperature,
         conditionIconRes = codeIconRes(conditionCode),
-        day = String.format(Locale.ENGLISH, "%tA", date * 1000L).substring(0, 3).toUpperCase()
+        day = String
+            .format(Locale.ENGLISH, "%tA", date * 1000L)
+            .substring(0, 3)
+            .toUpperCase(Locale.ENGLISH)
     )
 }
 
@@ -54,6 +57,9 @@ fun ForecastMetric.convert(): ForecastWeather {
         unit = UNIT_METRIC,
         temperature = temperature,
         conditionIconRes = codeIconRes(conditionCode),
-        day = String.format(Locale.ENGLISH, "%tA", date * 1000L).substring(0, 3).toUpperCase()
+        day = String
+            .format(Locale.ENGLISH, "%tA", date * 1000L)
+            .substring(0, 3)
+            .toUpperCase(Locale.ENGLISH)
     )
 }
