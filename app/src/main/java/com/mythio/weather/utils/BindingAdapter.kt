@@ -59,14 +59,14 @@ object BindingAdapter {
 
     @InverseBindingAdapter(attribute = "searchQuery")
     @JvmStatic
-    fun searchBinding2(view: EditText): String {
+    fun searchBinding(view: EditText): String {
 
         return view.text.toString()
     }
 
     @BindingAdapter("searchQueryAttrChanged")
     @JvmStatic
-    fun searchBindingProvider(view: EditText, listener: InverseBindingListener?) {
+    fun searchBinding(view: EditText, listener: InverseBindingListener?) {
         view.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
@@ -92,9 +92,9 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("visibilityR")
+    @BindingAdapter("visibilityRecent")
     @JvmStatic
-    fun funfun2(view: ConstraintLayout, int: Boolean) {
+    fun recentRecyclerViewBinding(view: ConstraintLayout, int: Boolean) {
         if (int) {
             view.visibility = View.GONE
         } else {
@@ -102,9 +102,9 @@ object BindingAdapter {
         }
     }
 
-    @BindingAdapter("visibilityS")
+    @BindingAdapter("visibilitySearch")
     @JvmStatic
-    fun funfu3(view: ConstraintLayout, int: Boolean) {
+    fun searchRecyclerViewBinding(view: ConstraintLayout, int: Boolean) {
         if (!int) {
             view.visibility = View.GONE
         } else {

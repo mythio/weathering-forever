@@ -60,7 +60,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/materialCardView"
-            app:visibilityR="@{searchViewModel.isDataAvailable}">
+            app:visibilityRecent="@{searchViewModel.isDataAvailable}">
 
             <TextView
                 android:id="@+id/tv_recentBanner"
@@ -91,7 +91,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/materialCardView"
-            app:visibilityS="@{searchViewModel.isDataAvailable}">
+            app:visibilitySearch="@{searchViewModel.isDataAvailable}">
 
             <TextView
                 android:id="@+id/tv_searchBanner"
