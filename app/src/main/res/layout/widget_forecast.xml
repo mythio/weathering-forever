@@ -36,11 +36,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal"
         android:paddingStart="48dp"
         android:paddingEnd="48dp"
         android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/widget_iv_condition_0"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:tint="#fff"
+                tools:src="@drawable/ic_cloud" />
+
+            <TextView
+                android:id="@+id/widget_tv_day_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#fff"
+                android:textSize="12sp"
+                tools:text="MON" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,6 +81,7 @@
                 tools:src="@drawable/ic_cloud" />
 
             <TextView
+                android:id="@+id/widget_tv_day_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
@@ -80,6 +105,7 @@
                 tools:src="@drawable/ic_cloud" />
 
             <TextView
+                android:id="@+id/widget_tv_day_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
@@ -103,29 +129,7 @@
                 tools:src="@drawable/ic_cloud" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:textSize="12sp"
-                tools:text="MON" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/widget_iv_condition_4"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:tint="#fff"
-                tools:src="@drawable/ic_cloud" />
-
-            <TextView
+                android:id="@+id/widget_tv_day_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"

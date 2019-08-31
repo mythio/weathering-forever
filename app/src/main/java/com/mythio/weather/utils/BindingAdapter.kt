@@ -111,21 +111,4 @@ object BindingAdapter {
             view.visibility = View.VISIBLE
         }
     }
-
-//    @BindingAdapter(value = ["listData", "recentSearchRes", "visibility"])
-//    @JvmStatic
-//    fun bindTemp(
-//        recyclerView: RecyclerView,
-//        searchRes: List<Location>?,
-//        recentSearchRes: List<Location>?,
-//        visibility: Boolean
-//    ) {
-//        val adapter = recyclerView.adapter as SearchLocationAdapter
-//
-//        if (visibility) {
-//            adapter.submitList(searchRes?.toList())
-//        } else {
-//            adapter.submitList(recentSearchRes?.toList())
-//        }
-//    }
 }

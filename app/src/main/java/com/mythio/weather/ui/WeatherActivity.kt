@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -31,7 +30,8 @@ class WeatherActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding: ActivityWeatherBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather)
+        val binding: ActivityWeatherBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_weather)
 
         binding.lifecycleOwner = this
         binding.weatherViewModel = viewModel
@@ -65,7 +65,7 @@ class WeatherActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
                 }
                 NetworkState.ERROR -> {
                     showSnackBar()
-                    root.finishRefresh(600)
+                    root.finishRefresh(600, false, true)
                 }
                 else -> {
                 }
@@ -87,7 +87,6 @@ class WeatherActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenc
     }
 
     override fun onSharedPreferenceChanged(p0: SharedPreferences?, p1: String?) {
-        Log.d("TAG_TAG_TAG", "CALLED")
         when (p1) {
             SHARED_PREF_KEY_LOCATION -> {
                 location = p0?.getString(SHARED_PREF_KEY_LOCATION, DEFAULT_LOCATION)!!

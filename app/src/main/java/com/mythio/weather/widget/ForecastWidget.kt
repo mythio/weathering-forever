@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import com.mythio.weather.R
 import com.mythio.weather.db.AppDatabase
@@ -14,6 +13,7 @@ import com.mythio.weather.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class ForecastWidget : AppWidgetProvider() {
 
@@ -22,8 +22,6 @@ class ForecastWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        Log.d("TAG_TAG_TAG", "update Forecast")
-
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(
                 context,
@@ -43,8 +41,6 @@ class ForecastWidget : AppWidgetProvider() {
             context: Context, appWidgetManager: AppWidgetManager,
             appWidgetId: Int
         ) {
-
-            Log.d("TAG_TAG_TAG", "update Forecast 2")
             val sharedPref =
                 context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
 
@@ -78,28 +74,66 @@ class ForecastWidget : AppWidgetProvider() {
                     else -> null
                 }!!
 
+                val locationTokens = location.split(',')
+                var locationShort = ""
+
+                for (i in locationTokens.indices - 1) {
+                    locationShort += locationTokens[i]
+                    if (i != locationTokens.size - 1) {
+                        locationShort += ", "
+                    }
+                }
+
                 views.setTextViewText(R.id.widget_tv_temperature, "${weather.temperature}\u00B0")
                 views.setImageViewResource(
-                    R.id.widget_iv_condition_1,
+                    R.id.widget_iv_condition_0,
                     codeIconRes(forecast[0].conditionCode)
                 )
                 views.setImageViewResource(
-                    R.id.widget_iv_condition_2,
+                    R.id.widget_iv_condition_1,
                     codeIconRes(forecast[1].conditionCode)
                 )
                 views.setImageViewResource(
-                    R.id.widget_iv_condition_3,
+                    R.id.widget_iv_condition_2,
                     codeIconRes(forecast[2].conditionCode)
                 )
                 views.setImageViewResource(
-                    R.id.widget_iv_condition_4,
+                    R.id.widget_iv_condition_3,
                     codeIconRes(forecast[3].conditionCode)
                 )
                 views.setImageViewResource(
                     R.id.widget_img_condition,
                     codeIconRes(weather.conditionCode)
                 )
-                views.setTextViewText(R.id.widget_tv_location, location)
+                views.setTextViewText(
+                    R.id.widget_tv_day_0,
+                    String
+                        .format(Locale.ENGLISH, "%tA", forecast[0].date * 1000L)
+                        .substring(0, 3)
+                        .toUpperCase(Locale.ENGLISH)
+                )
+                views.setTextViewText(
+                    R.id.widget_tv_day_1,
+                    String
+                        .format(Locale.ENGLISH, "%tA", forecast[1].date * 1000L)
+                        .substring(0, 3)
+                        .toUpperCase(Locale.ENGLISH)
+                )
+                views.setTextViewText(
+                    R.id.widget_tv_day_2,
+                    String
+                        .format(Locale.ENGLISH, "%tA", forecast[2].date * 1000L)
+                        .substring(0, 3)
+                        .toUpperCase(Locale.ENGLISH)
+                )
+                views.setTextViewText(
+                    R.id.widget_tv_day_3,
+                    String
+                        .format(Locale.ENGLISH, "%tA", forecast[3].date * 1000L)
+                        .substring(0, 3)
+                        .toUpperCase(Locale.ENGLISH)
+                )
+                views.setTextViewText(R.id.widget_tv_location, locationShort)
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
 

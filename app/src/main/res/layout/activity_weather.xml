@@ -17,16 +17,16 @@
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlAccentColor="@color/smartRefreshHeader"
-            app:srlDrawableArrow="@drawable/ic_refresh"
             app:srlDrawableProgress="@drawable/ic_refresh"
             app:srlEnableLastTime="false"
             app:srlPrimaryColor="@android:color/transparent"
-            app:srlTextFailed="Failed! Please try again"
-            app:srlTextFinish="Done"
-            app:srlTextPulling="Pull to refresh"
-            app:srlTextRefreshing="Refreshing"
-            app:srlTextRelease="Release" />
+            app:srlTextFailed="&#128547;"
+            app:srlTextFinish="&#128521;"
+            app:srlTextLoading="&#129300;"
+            app:srlTextPulling="&#129300;"
+            app:srlTextRefreshing="&#129300;"
+            app:srlTextRelease="&#129300;"
+            app:srlTextSizeTitle="24sp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.widget.RemoteViews
 import com.mythio.weather.R
 import com.mythio.weather.db.AppDatabase
@@ -22,8 +21,6 @@ class WeatherWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        Log.d("TAG_TAG_TAG", "update Weather")
-
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(
                 context,
@@ -66,21 +63,12 @@ class WeatherWidget : AppWidgetProvider() {
                     else -> null
                 }!!
 
-                val forecast = when (unit) {
-                    UNIT_METRIC -> {
-                        db.getForecastMetricAsync()
-                    }
-                    UNIT_IMPERIAL -> {
-                        db.getForecastImperialAsync()
-                    }
-                    else -> null
-                }!!
-
                 views.setTextViewText(R.id.widget_tv_temperature, "${weather.temperature}\u00B0")
                 views.setImageViewResource(
                     R.id.widget_img_condition,
                     codeIconRes(weather.conditionCode)
                 )
+
                 views.setTextViewText(R.id.widget_tv_location, location)
                 appWidgetManager.updateAppWidget(appWidgetId, views)
             }
