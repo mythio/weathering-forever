@@ -1,4 +1,4 @@
-package com.mythio.weather.adapter
+package com.mythio.weather.ui.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR

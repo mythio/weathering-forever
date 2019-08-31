@@ -1,4 +1,4 @@
-package com.mythio.weather.adapter
+package com.mythio.weather.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

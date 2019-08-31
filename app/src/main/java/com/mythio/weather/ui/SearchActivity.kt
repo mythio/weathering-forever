@@ -9,10 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.mythio.weather.R
-import com.mythio.weather.adapter.RecentLocationAdapter
-import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.databinding.ActivitySearchBinding
 import com.mythio.weather.model.entity.Location
+import com.mythio.weather.ui.adapter.RecentLocationAdapter
+import com.mythio.weather.ui.adapter.SearchLocationAdapter
 import com.mythio.weather.utils.*
 import com.mythio.weather.viewmodels.SearchViewModel
 import kotlinx.android.synthetic.main.activity_search.*

@@ -11,9 +11,9 @@ import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.recyclerview.widget.RecyclerView
-import com.mythio.weather.adapter.RecentLocationAdapter
-import com.mythio.weather.adapter.SearchLocationAdapter
 import com.mythio.weather.model.entity.Location
+import com.mythio.weather.ui.adapter.RecentLocationAdapter
+import com.mythio.weather.ui.adapter.SearchLocationAdapter
 
 object BindingAdapter {
 
