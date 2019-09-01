@@ -12,21 +12,18 @@
 
 * Current status:
 <p align="center">
-<img src="https://github.com/mythio/weathering-forever/blob/master/res/weather.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/weather_refresh.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/recent_search.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/search_results.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/settings.png" width="200">
+<img src="https://github.com/mythio/weathering-forever/blob/master/res/weather.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/weather_refresh.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/recent_search.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/search_results.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/settings.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/weather_widget_small.png" width="200"> <img src="https://github.com/mythio/weathering-forever/blob/master/res/weather_widget_large.png" width="200">
 </p>
 
 ### File structure
 ```
 .
 ├── AndroidManifest.xml
+├── ic_launcher-web.png
 ├── java
 │   └── com
 │       └── mythio
 │           └── weather
-│               ├── adapter
-│               │   ├── DataBindingViewHolder.kt
-│               │   ├── RecentLocationAdapter.kt
-│               │   └── SearchLocationAdapter.kt
 │               ├── db
 │               │   ├── AppDatabase.kt
 │               │   └── dao
@@ -59,10 +56,13 @@
 │               │   ├── SearchRepository.kt
 │               │   └── WeatherRepository.kt
 │               ├── ui
+│               │   ├── adapter
+│               │   │   ├── DataBindingViewHolder.kt
+│               │   │   ├── RecentLocationAdapter.kt
+│               │   │   └── SearchLocationAdapter.kt
 │               │   ├── SearchActivity.kt
 │               │   ├── SettingsActivity.kt
-│               │   ├── WeatherActivity.kt
-│               │   └── WeatherWidget.kt
+│               │   └── WeatherActivity.kt
 │               ├── utils
 │               │   ├── ActivityViewModelLazy.kt
 │               │   ├── BindingAdapter.kt
@@ -73,40 +73,44 @@
 │               │   ├── SearchViewModel.kt
 │               │   └── WeatherViewModel.kt
 │               ├── WeatherApplication.kt
+│               ├── widget
+│               │   ├── ForecastWidget.kt
+│               │   └── WeatherWidget.kt
 │               └── work
 │                   └── RefreshDataWorker.kt
 └── res
     ├── drawable
-    │   ├── bg_button_round.xml
     │   ├── ic_close.xml
-    │   ├── ic_cloud_drizzle.xml
     │   ├── ic_cloud_lightning.xml
     │   ├── ic_cloud_rain.xml
     │   ├── ic_cloud_snow.xml
     │   ├── ic_cloud.xml
     │   ├── ic_delete.xml
     │   ├── ic_humidity.xml
+    │   ├── ic_launcher_foreground.xml
     │   ├── ic_map_pin.xml
     │   ├── ic_precipation.xml
     │   ├── ic_refresh.xml
-    │   ├── ic_search.xml
     │   ├── ic_settings.xml
     │   ├── ic_sun.xml
     │   ├── ic_uv.xml
     │   └── ic_wind.xml
     ├── drawable-nodpi
-    │   └── example_appwidget_preview.png
     ├── font
     │   └── quicksand_medium.ttf
     ├── layout
     │   ├── activity_search.xml
+    │   ├── activity_settings.xml
     │   ├── activity_weather.xml
     │   ├── item_forecast.xml
     │   ├── item_recent.xml
     │   ├── item_search.xml
-    │   ├── settings_activity.xml
-    │   └── weather_widget.xml
+    │   ├── widget_forecast.xml
+    │   └── widget_weather.xml
     ├── mipmap-anydpi
+    ├── mipmap-anydpi-v26
+    │   ├── ic_launcher_round.xml
+    │   └── ic_launcher.xml
     ├── mipmap-hdpi
     │   ├── ic_launcher.png
     │   └── ic_launcher_round.png
@@ -125,19 +129,15 @@
     ├── values
     │   ├── arrays.xml
     │   ├── colors.xml
-    │   ├── dimens.xml
+    │   ├── ic_launcher_background.xml
     │   ├── strings.xml
     │   └── styles.xml
     ├── values-night
     │   ├── colors.xml
-    │   ├── dimens.xml
-    │   ├── strings.xml
     │   └── styles.xml
-    ├── values-v14
-    │   └── dimens.xml
     └── xml
+        ├── forecast_widget_info.xml
         ├── preferences.xml
         └── weather_widget_info.xml
-
-33 directories, 87 files
+34 directories, 87 files
 ```
